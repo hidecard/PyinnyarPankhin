@@ -1,18 +1,23 @@
 # TODO: Convert Static HTML University Website to Laravel React Project
 
 ## Setup Phase
-- [ ] Set up a new Laravel project in the current directory
-- [ ] Install React using Laravel's Vite for frontend build
-- [ ] Move CSS and images to Laravel's public/assets directory
+- [x] Move Frontend/style.css to pyinnyarpankhin/public/assets/css/
+- [x] Move Admin/style.css to pyinnyarpankhin/public/assets/css/
+- [x] Move image/ directory to pyinnyarpankhin/public/assets/images/
+- [x] Install Laravel dependencies: run `composer install` in pyinnyarpankhin/
+- [x] Install Node.js dependencies: run `npm install` in pyinnyarpankhin/
+- [x] Ensure Laravel project is set up: check .env, run `php artisan key:generate` if needed
 
 ## Backend Development
-- [ ] Create Laravel models/controllers for dynamic data (News, Events, Users)
-- [ ] Implement authentication for admin panel using Laravel Breeze
-- [ ] Set up database migrations for models
+- [x] Create News model and migration
+- [x] Create Event model and migration
+- [x] Create User model (already exists, but ensure it's set up)
+- [x] Set up authentication using Laravel Breeze or Fortify (already configured)
+- [x] Run database migrations
 
 ## Frontend Conversion
-- [ ] Convert index.html to React Home component
-- [ ] Convert Frontend/academics.html to React Academics component
+- [x] Convert index.html to React Home component (pyinnyarpankhin/resources/js/pages/Home.tsx)
+- [x] Convert Frontend/academics.html to React Academics component
 - [ ] Convert Frontend/admissions.html to React Admissions component
 - [ ] Convert Frontend/department.html to React Department component
 - [ ] Convert Frontend/library.html to React Library component
@@ -29,10 +34,12 @@
 - [ ] Convert Admin/academics-clendar.html to React AdminCalendar component
 
 ## Routing and Navigation
-- [ ] Set up React Router for client-side navigation
-- [ ] Update navbar and links to use React routing
+- [x] Set up Inertia routes in pyinnyarpankhin/routes/web.php
+- [ ] Update navbar and links in React components to use Inertia navigation
+- [ ] Create shared layout components if needed
 
 ## Followup Steps
-- [ ] Install Laravel, Composer, Node.js dependencies
-- [ ] Run database migrations
-- [ ] Test the app locally
+- [x] Run database migrations
+- [x] Test the app locally: run `php artisan serve` and `npm run dev`
+- [ ] Verify all pages load correctly
+- [ ] Check authentication flows
