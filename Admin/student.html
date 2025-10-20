@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyinnyar Pankhin - Student Admin</title>\
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8z4+2e5c7e5a5e5a5e5a5e5a5e5a5e5a5e
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- sidebar start -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-university me-2"></i>Pyinnyar Pankhin</h3>
+            <small>Admin Dashboard</small>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li>
+                <a href="./index.html" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Academic</span>
+                    <i class="fas fa-angle-down ms-auto"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="./academic.html">Degree Programs</a></li>
+                    <li><a href="./academic.html">Majors</a></li>
+                    <li><a href="./academic.html">Departments</a></li>
+                    <li><a href="./academic.html">Faculties</a></li>
+                    <li><a href="./academic.html">Courses</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="./student.html">
+                    <i class="fas fa-users"></i>
+                    <span>Students</span>
+                </a>
+            </li>
+            
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Academic Calendar</span>
+                    <i class="fas fa-angle-down ms-auto"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href=".academics-clendar.html">Events</a></li>
+                    <li><a href=".academics-clendar.html">Holidays</a></li>
+                    <li><a href=".academics-clendar.html">Exam Schedule</a></li>
+                    <li><a href=".academics-clendar.html">Class Schedules</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reports</span>
+                    <i class="fas fa-angle-down ms-auto"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="#">Enrollment Reports</a></li>
+                    <li><a href="#">Grade Reports</a></li>
+                    <li><a href="#">Faculty Workload</a></li>
+                    <li><a href="#">Financial Reports</a></li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="./setting.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1 style="color: #FF7300;">Student Management</h1>
+            <div class="user-info">
+                <span style="color: #FF7300;">Admin User</span>
+            </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon text-primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h5 class="card-title" style="color: #6c3428;">Total Students</h5>
+                    <p class="card-value" style="color: #6c3428;">2,450</p>
+                    <a href="#" class="card-link">View All</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon text-success">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h5 class="card-title" style="color: #6c3428;">New Admissions</h5>
+                    <p class="card-value" style="color: #6c3428;">187</p>
+                    <a href="#" class="card-link">Process</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon text-warning">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h5 class="card-title" style="color: #6c3428;">Graduating</h5>
+                    <p class="card-value" style="color: #6c3428;">320</p>
+                    <a href="#" class="card-link">View List</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon text-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h5 class="card-title" style="color: #6c3428;">At Risk</h5>
+                    <p class="card-value" style="color: #6c3428;">45</p>
+                    <a href="#" class="card-link">Intervene</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Search and Filters -->
+        <div class="chart-container mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 style="color: #FF7300;">Student Search</h3>
+                <button class="btn btn-primary" onclick="openStudentModal()">
+                    <i class="fas fa-plus"></i> Add Student
+                </button>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search by name or ID">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>All Departments</option>
+                            <option>Computer Science</option>
+                            <option>Mathematics</option>
+                            <option>Physics</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>All Years</option>
+                            <option>First Year</option>
+                            <option>Second Year</option>
+                            <option>Third Year</option>
+                            <option>Fourth Year</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary w-100">Filter</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Management Table -->
+        <div class="student-management">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="color: #6c3428;">Student ID</th>
+                            <th style="color: #6c3428;">Name</th>
+                            <th style="color: #6c3428;">Department</th>
+                            <th style="color: #6c3428;">Year</th>
+                            <th style="color: #6c3428;">Status</th>
+                            <th style="color: #6c3428;">GPA</th>
+                            <th style="color: #6c3428;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: #6c3428;">20230045</td>
+                            <td>
+                                <div class="d-flex align-items-center" style="color: #6c3428;">
+                                    <img src="../image/user3.jpg" alt="Student" class="rounded-circle me-2" width="30" height="30" >
+                                    John Doe
+                                </div>
+                            </td>
+                            <td style="color: #6c3428;">Computer Science</td>
+                            <td style="color: #6c3428;">Third Year</td>
+                            <td style="color: #6c3428;"><span class="badge bg-success">Active</span></td>
+                            <td style="color: #6c3428;">3.75</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #6c3428;">20230128</td>
+                            <td>
+                                <div class="d-flex align-items-center" style="color: #6c3428;">
+                                    <img src="../image/user 2.jpg" alt="Student" class="rounded-circle me-2" width="30" height="30">
+                                    Jane Smith
+                                </div>
+                            </td>
+                            <td style="color: #6c3428;">Mathematics</td>
+                            <td style="color: #6c3428;">Second Year</td>
+                            <td style="color: #6c3428;"><span class="badge bg-success">Active</span></td>
+                            <td style="color: #6c3428;">3.92</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #6c3428;">20230217</td>
+                            <td>
+                                <div class="d-flex align-items-center" style="color: #6c3428;">
+                                    <img src="../image/user4.jpg" alt="Student" class="rounded-circle me-2" width="30" height="30">
+                                    Robert Johnson
+                                </div>
+                            </td>
+                            <td style="color: #6c3428;">Physics</td>
+                            <td style="color: #6c3428;">Fourth Year</td>
+                            <td style="color: #6c3428;"><span class="badge bg-warning">Probation</span></td>
+                            <td style="color: #6c3428;">2.15</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #6c3428;">20230389</td>
+                            <td>
+                                <div class="d-flex align-items-center" style="color: #6c3428;">
+                                    <img src="../image/user 1.jpg" alt="Student" class="rounded-circle me-2" width="30" height="30">
+                                    Emily Wilson
+                                </div>
+                            </td>
+                            <td style="color: #6c3428;">English</td>
+                            <td style="color: #6c3428;">First Year</td>
+                            <td style="color: #6c3428;"><span class="badge bg-success">Active</span></td>
+                            <td style="color: #6c3428;">3.45</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #6c3428;">20230456</td>
+                            <td>
+                                <div class="d-flex align-items-center" style="color: #6c3428;">
+                                    <img src="../image/user5.jpg" alt="Student" class="rounded-circle me-2" width="30" height="30">
+                                    Michael Brown
+                                </div>
+                            </td>
+                            <td style="color: #6c3428;">Computer Science</td>
+                            <td style="color: #6c3428;">Second Year</td>
+                            <td style="color: #6c3428;"><span class="badge bg-danger">Inactive</span></td>
+                            <td style="color: #6c3428;">1.89</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Student Profile Preview (Example) -->
+        <div class="chart-container">
+            <h3 style="color: #6c3428;">Student Profile Preview</h3>
+            <div class="student-profile">
+                <img src="../image/user3.jpg" alt="Student" class="profile-image">
+                <div class="profile-details">
+                    <h4 class="profile-name" style="color: #6c3428;">John Doe</h4>
+                    <div class="profile-id" style="color: #6c3428;">ID: 20230045</div>
+                    <div class="profile-meta">
+                        <div class="meta-item">
+                            <span class="meta-icon"><i class="fas fa-building"></i></span>
+                            <span style="color: #6c3428;">Computer Science Department</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon"><i class="fas fa-calendar-alt"></i></span>
+                            <span style="color: #6c3428;">Third Year</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon"><i class="fas fa-envelope"></i></span>
+                            <span style="color: #6c3428;">john.doe@university.edu</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-icon"><i class="fas fa-phone"></i></span>
+                            <span style="color: #6c3428;">(555) 123-4567</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <h4 style="color: #6c3428;">Academic Performance</h4>
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <h4 style="color: #6c3428;">Current Courses</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center" style="color: #6c3428;">
+                                CS-101 - Introduction to Computer Science
+                                <span class="badge bg-primary rounded-pill" >A</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center" style="color: #6c3428;">
+                                MATH-201 - Calculus II
+                                <span class="badge bg-primary rounded-pill">B+</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center" style="color: #6c3428;">
+                                PHYS-101 - General Physics
+                                <span class="badge bg-primary rounded-pill">A-</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center" style="color: #6c3428;">
+                                ENG-101 - English Composition
+                                <span class="badge bg-primary rounded-pill">A</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Student</h5>
+                    <button type="button" class="close" onclick="closeStudentModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="studentForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="studentId" class="form-label">Student ID</label>
+                                    <input type="text" class="form-control" id="studentId" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dob" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" id="dob" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="department" class="form-label">Department</label>
+                                    <select class="form-control" id="department" required>
+                                        <option value="">Select Department</option>
+                                        <option>Computer Science</option>
+                                        <option>Mathematics</option>
+                                        <option>Physics</option>
+                                        <option>English</option>
+                                        <option>Biology</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="year" class="form-label">Year</label>
+                                    <select class="form-control" id="year" required>
+                                        <option value="">Select Year</option>
+                                        <option>First Year</option>
+                                        <option>Second Year</option>
+                                        <option>Third Year</option>
+                                        <option>Fourth Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="photo" class="form-label">Student Photo</label>
+                            <input type="file" class="form-control" id="photo">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeStudentModal()">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveStudent()">Save Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script>
+        // Initialize sidebar submenu toggle
+        document.querySelectorAll('.has-submenu > a').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const submenu = this.parentElement.querySelector('.sidebar-submenu');
+                this.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Performance Chart
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            const performanceChart = new Chart(performanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5'],
+                    datasets: [{
+                        label: 'GPA',
+                        data: [3.2, 3.5, 3.7, 3.6, 3.8],
+                        backgroundColor: 'rgba(255, 115, 0, 0.7)',
+                        borderColor: 'rgba(255, 115, 0, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 2.0,
+                            max: 4.0
+                        }
+                    }
+                }
+            });
+        });
+
+        // Student Modal Functions
+        function openStudentModal() {
+            document.getElementById('studentModal').style.display = 'block';
+        }
+
+        function closeStudentModal() {
+            document.getElementById('studentModal').style.display = 'none';
+        }
+
+        function saveStudent() {
+            // Here you would typically save the student data to your backend
+            alert('Student saved successfully!');
+            closeStudentModal();
+            // Reset form
+            document.getElementById('studentForm').reset();
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('studentModal');
+            if (event.target == modal) {
+                closeStudentModal();
+            }
+        }
+    </script>
+</body>
+</html>
