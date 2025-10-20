@@ -18,13 +18,6 @@ interface EventItem {
 export default function Home({ news, events }: { news: NewsItem[], events: EventItem[] }) {
     const [email, setEmail] = useState('');
 
-    const handleSubscribe = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Handle subscription logic here
-        alert('Thank you for subscribing!');
-        setEmail('');
-    };
-
     return (
         <>
             <Head title="Home - Pyinnyar Pankhin University" />
@@ -220,42 +213,34 @@ export default function Home({ news, events }: { news: NewsItem[], events: Event
             </section>
             {/* Upcoming Events end */}
 
-            {/* Stats start */}
+            {/* Stats Section Start */}
             <section className="stats-section">
                 <div className="stats-container">
-                    <div className="stat-item">
-                        <h3>10,000+</h3>
+                    <div className="stat-box">
+                        <h3 className="stat-number">10,000+</h3>
                         <p>Graduates</p>
                     </div>
-                    <div className="stat-item">
-                        <h3>50+</h3>
+                    <div className="stat-box">
+                        <h3 className="stat-number">50+</h3>
                         <p>Departments</p>
                     </div>
-                    <div className="stat-item">
-                        <h3>30+</h3>
+                    <div className="stat-box">
+                        <h3 className="stat-number">30+</h3>
                         <p>Years of Excellence</p>
                     </div>
                 </div>
             </section>
-            {/* Stats end */}
+            {/* Stats Section End */}
 
-            {/* Subscribe start */}
+            {/* Subscribe Section Start */}
             <section className="subscribe-section">
+                <h2 className="subscribe-title">Stay Updated</h2>
                 <div className="subscribe-container">
-                    <h2>Stay Updated</h2>
-                    <form onSubmit={handleSubscribe} className="subscribe-form">
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                        <button type="submit">Subscribe</button>
-                    </form>
+                    <input type="email" placeholder="Enter your email" className="subscribe-input" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    <button type="submit" className="subscribe-button">Subscribe</button>
                 </div>
             </section>
-            {/* Subscribe end */}
+            {/* Subscribe Section End */}
 
             {/* Footer */}
             <footer className="footer">

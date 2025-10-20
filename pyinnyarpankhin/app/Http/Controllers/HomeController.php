@@ -10,10 +10,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $news = News::where('is_active', true)->latest()->take(5)->get();
-        $events = Event::where('is_active', true)->latest()->take(5)->get();
+        $news = News::where('is_active', true)->latest()->take(3)->get();
+        $events = Event::where('is_active', true)->latest()->take(3)->get();
 
-        return inertia('Home', [
+        return view('home', [
             'news' => $news,
             'events' => $events,
         ]);

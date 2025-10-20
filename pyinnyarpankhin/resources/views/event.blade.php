@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Page</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8z4+2e5c7e5a5e5a5e5a5e5a5e5a5e5a5e5" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+<body>
+    
+        <!-- Navbar Start -->
+            <nav class="navbar navbar-expand-lg bg-white" style="border: 1px solid #FF7300;">
+                <div class="container-fluid">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="" style="width: 50px; height: 50px;">
+                    <a class="navbar-brand ms-3 fw-bold" href="#" style="color: #FF7300;">Pyinnyar Pankhin <br> University</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav " style="margin-left: 50px;">
+                        <li class="nav-item menu " style="margin-right: 50px;">
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}" >Home</a>
+                        </li>
+                        <li class="nav-item menu" style="margin-right: 50px;">
+                        <a class="nav-link active" href="{{ route('academics') }}">Academics</a>
+                        </li>
+                        <li class="nav-item menu" style="margin-right: 50px;">
+                        <a class="nav-link active" href="{{ route('department') }}">Department</a>
+                        </li>
+                        <li class="nav-item menu" style="margin-right: 50px;">
+                        <a class="nav-link active" href="{{ route('admissions') }}">Admissions</a>
+                        </li>
+                        <li class="nav-item menu" style="margin-right: 50px;">
+                        <a class="nav-link active" href="{{ route('library') }}">Library</a>
+                        </li>
+                        <li class="nav-item menu" style="margin-right: 50px;">
+                        <a class="nav-link active" href="{{ route('about') }}">About</a>
+                        </li>
+                        <li class="nav-item menu" style="margin-right: 50px;">
+                        <a class="nav-link active" href="{{ route('event') }}">Events</a>
+                        </li>
+                        <li class="nav-item menu" style="margin-right: 50px;">
+                        <a class="nav-link active" href="{{ route('contact') }}">Contact</a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+         <!-- Navbar End -->
+
+       <!-- Hero Section Start -->
+         <section class="hero-section-event text-center">
+            <div class="hero-content">
+                <div class="intro-text-event">
+                <p class="lead-1">Stay Updated with Campus Life</p>
+                <p class="lead-2">
+                    Discover upcoming events, academic conferences, workshops, and student activities.
+                </p>
+                </div>
+                <div class="search-container">
+                <div class="input-group mb-3 justify-content-center">
+                    <input type="text" class="form-control" placeholder="Search events..." />
+                    <button class="btn btn-secondary-custom" type="button">
+                    <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </section>
+<!-- Hero Section End -->
+
+    <!-- Main Content -->
+     <div class="container">
+    <div class="container-event mb-5 mt-5">
+        <!-- Upcoming Events -->
+        <section class="mb-5">
+            <h2 class="section-title-event" style="color: #6C3428;">Upcoming Events</h2>
+            
+            <div class="row">
+                <!-- Event Card 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/uni events image.png') }}" class="card-img-top" alt="Guest Lecture">
+                        <div class="card-body">
+                            <span class="category-tag lecture-tag" style="color: #6C3428;">
+                                <i class="fas fa-microphone me-1" style="color: #6C3428;"></i> Lecture
+                            </span>
+                            <h5 style="color: #6C3428;">Guest Lecture: AI in Modern Society</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1"></i> June 15, 2025 | 2:00 PM
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> Main Auditorium
+                            </p>
+                            <p style="color: #6C3428;">Join Dr. Sarah Johnson as she discusses the ethical implications of artificial intelligence in today's world.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">Register</button>
+                                <small class="text-muted">45 spots remaining</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/college students.jpg') }}" class="card-img-top" alt="Cultural Festival">
+                        <div class="card-body">
+                            <span class="category-tag cultural-tag" style="color: #6C3428;">
+                                <i class="fas fa-masks-theater me-1" style="color: #6C3428;"></i> Cultural
+                            </span>
+                            <h5 style="color: #6C3428;">Annual Cultural Festival</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1"></i> June 18-20, 2025 | All Day
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> University Quad
+                            </p>
+                            <p style="color: #6C3428;">Celebrate diversity with performances, food, and exhibitions from around the world.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">More Info</button>
+                                <small class="text-muted">Free admission</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/Basketball.jpg') }}" class="card-img-top" alt="Sports Tournament">
+                        <div class="card-body">
+                            <span class="category-tag sports-tag" style="color: #6C3428;">
+                                <i class="fas fa-running me-1" style="color: #6C3428;"></i> Sports
+                            </span>
+                            <h5 style="color: #6C3428;">Inter-College Basketball Tournament</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1"></i> June 22, 2025 | 4:00 PM
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> Sports Complex
+                            </p>
+                            <p style="color: #6C3428;">Cheer for our university team as they compete against rivals in the annual tournament.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">Register Team</button>
+                                <small class="text-muted">Deadline: June 15</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/events image 2.jpg') }}" class="card-img-top" alt="Workshop">
+                        <div class="card-body">
+                            <span class="category-tag workshop-tag" style="color: #6C3428;">
+                                <i class="fas fa-laptop-code me-1" style="color: #6C3428;"></i> Workshop
+                            </span>
+                            <h5 style="color: #6C3428;">Web Development Bootcamp</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1"></i> June 25-27, 2025 | 10:00 AM
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> Computer Lab B
+                            </p>
+                            <p style="color: #6C3428;">3-day intensive workshop covering HTML, CSS, JavaScript and modern frameworks.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">Register</button>
+                                <small class="text-muted">Limited seats</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/Summer Career Fair.jpg') }}" class="card-img-top" alt="Career Fair">
+                        <div class="card-body">
+                            <span class="category-tag lecture-tag" style="color: #6C3428;">
+                                <i class="fas fa-briefcase me-1" style="color: #6C3428;"></i> Career
+                            </span>
+                            <h5 style="color: #6C3428;">Summer Career Fair</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1"></i> July 5, 2025 | 9:00 AM - 4:00 PM
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> Student Center
+                            </p>
+                            <p style="color: #6C3428;">Meet with top employers looking to hire students for internships and full-time positions.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">More Info</button>
+                                <small class="text-muted">50+ companies</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/Undergraduate Research Symposium.jpg') }}" class="card-img-top" alt="Research Symposium">
+                        <div class="card-body">
+                            <span class="category-tag lecture-tag" style="color: #6C3428;">
+                                <i class="fas fa-flask me-1" style="color: #6C3428;"></i> Research
+                            </span>
+                            <h5 style="color: #6C3428;">Undergraduate Research Symposium</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1" style="color: #6C3428;"></i> July 10, 2025 | 1:00 PM - 5:00 PM
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> Science Building
+                            </p>
+                            <p style="color: #6C3428;">Showcase of outstanding undergraduate research projects across all disciplines.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">Register</button>
+                                <small class="text-muted">Abstracts due June 30</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-secondary-custom" style="border-radius: 10px; color: white; background-color: #FF7300;">View All Upcoming Events</button>
+            </div>
+        </section>
+        
+        <!-- Featured Events start-->
+        <section class="mb-5">
+            <h2 class="section-title">Featured Events</h2>
+            
+            <div class="row">
+                <!-- Featured Event 1 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 featured-event">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/images/graduation 2.jpg') }}" class="img-fluid rounded-start h-100" alt="Graduation">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <span class="badge bg-warning mb-2" style="color: #6C3428;">Featured</span>
+                                    <h4 style="color: #6C3428;">Spring Graduation Ceremony</h4>
+                                    <p style="color: #6C3428;">
+                                        <i class="far fa-calendar-alt me-1"></i> May 28, 2025 | 10:00 AM
+                                        <br>
+                                        <i class="fas fa-map-marker-alt me-1"></i> University Stadium
+                                    </p>
+                                    <p style="color: #6C3428;">Celebrate the achievements of our graduating class. All family and friends welcome.</p>
+                                    <button class="btn btn-secondary-custom" style="border-radius: 10px; color: white; background-color: #FF7300;">Details & RSVP</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Event 2 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 featured-event">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/images/events image 3.jpg') }}" class="img-fluid rounded-start h-100" alt="Orientation">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <span class="badge bg-warning mb-2" style="color: #6C3428;">Featured</span>
+                                    <h4 style="color: #6C3428;">New Student Orientation</h4>
+                                    <p style="color: #6C3428;">
+                                        <i class="far fa-calendar-alt me-1"></i> August 15-17, 2025 | All Day
+                                        <br>
+                                        <i class="fas fa-map-marker-alt me-1"></i> Various Locations
+                                    </p>
+                                    <p style="color: #6C3428;">Welcome event for incoming freshmen and transfer students. Campus tours, info sessions, and more.</p>
+                                    <button class="btn btn-secondary-custom" style="border-radius: 10px; color: white; background-color: #FF7300;">Schedule & Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Featured Events End -->
+
+        <!-- Calendar View start-->
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="section-title mb-0">Calendar View</h2>
+                <div>
+                    <button class="btn btn-outline-secondary btn-sm me-2"><i class="fas fa-chevron-left"></i></button>
+                    <span class="fw-bold">June 2025</span>
+                    <button class="btn btn-outline-secondary btn-sm ms-2"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sun</th>
+                                    <th scope="col">Mon</th>
+                                    <th scope="col">Tue</th>
+                                    <th scope="col">Wed</th>
+                                    <th scope="col">Thu</th>
+                                    <th scope="col">Fri</th>
+                                    <th scope="col">Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-muted">28</td>
+                                    <td class="text-muted">29</td>
+                                    <td class="text-muted">30</td>
+                                    <td class="text-muted">31</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>12</td>
+                                    <td>13</td>
+                                    <td>14</td>
+                                    <td style="display: flex; flex-direction: column; align-items: center;">
+                                        <div class="calendar-highlight" style="background-color: #FF7300; border: 2px; border-radius: 50%; width: 30px; height: 30px">15</div>
+                                        <small class="text-muted">1 event</small>
+                                    </td>
+                                    <td>16</td>
+                                    <td>17</td>
+                                </tr>
+                                <tr>
+                                    <td style="display: flex; flex-direction: column; align-items: center;">
+                                        <div class="calendar-highlight" style="background-color: #FF7300; border: 2px; border-radius: 50%; width: 30px; height: 30px;">18</div>
+                                        <small class="text-muted">3 events</small>
+                                    </td>
+                                    <td>
+                                        <div class="calendar-highlight" style="background-color: #FF7300; border: 2px; border-radius: 50%; width: 30px; height: 30px;">19</div>
+                                        <small class="text-muted">3 events</small>
+                                    </td>
+                                    <td>
+                                        <div class="calendar-highlight" style="background-color: #FF7300; border: 2px; border-radius: 50%; width: 30px; height: 30px;">20</div>
+                                        <small class="text-muted">3 events</small>
+                                    </td>
+                                    <td>21</td>
+                                    <td>
+                                        <div class="calendar-highlight" style="background-color: #FF7300; border: 2px; border-radius: 50%; width: 30px; height: 30px;">22</div>
+                                        <small class="text-muted">1 event</small>
+                                    </td>
+                                    <td>23</td>
+                                    <td>24</td>
+                                </tr>
+                                <tr>
+                                    <td>25</td>
+                                    <td>26</td>
+                                    <td>27</td>
+                                    <td>28</td>
+                                    <td>29</td>
+                                    <td>30</td>
+                                    <td class="text-muted">1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Calendar View End -->
+        <!-- Past Events / Archives -->
+         <div class="container mt-5 mb-5">
+            
+                <ul class="nav nav-pills mb-4" id="pastEventsTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="past-events-tab" data-bs-toggle="pill" data-bs-target="#past-events" type="button" role="tab">Past Events</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="galleries-tab" data-bs-toggle="pill" data-bs-target="#galleries" type="button" role="tab">Photo Galleries</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="recaps-tab" data-bs-toggle="pill" data-bs-target="#recaps" type="button" role="tab">Event Recaps</button>
+                </li>
+            </ul>
+            
+            <div class="row">
+                 <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/teacher.jpg') }}" class="card-img-top" alt="Research Symposium">
+                        <div class="card-body">
+                            <span class="category-tag lecture-tag" style="color: #6C3428;">
+                                <i class="fas fa-flask me-1" style="color: #6C3428;"></i> Research
+                            </span>
+                            <h5 style="color: #6C3428;">Spring Science Fair</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1"></i> April 12, 2025 | 10:00 AM - 4:00 PM
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> Science Building
+                            </p>
+                            <p style="color: #6C3428;">Annual showcase of student research projects in STEM fields.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">View Photos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/party.jpg') }}" class="card-img-top" alt="Research Symposium">
+                        <div class="card-body">
+                            <span class="category-tag lecture-tag" style="color: #6C3428;">
+                                <i class="fas fa-flask me-1" style="color: #6C3428;"></i> Research
+                            </span>
+                            <h5 style="color: #6C3428;">Spring Music Festival</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1"></i>  March 25, 2025 | 1:00 PM - 10:00 PM
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> Performing Arts Center
+                            </p>
+                            <p style="color: #6C3428;">Performances by university ensembles and student musicians.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">View Photos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-md-6 col-lg-4">
+                    <div class="card event-card">
+                        <img src="{{ asset('assets/images/conference.jpg') }}" class="card-img-top" alt="Research Symposium">
+                        <div class="card-body">
+                            <span class="category-tag lecture-tag" style="color: #6C3428;">
+                                <i class="fas fa-flask me-1" style="color: #6C3428;"></i> Research
+                            </span>
+                            <h5 style="color: #6C3428;">Alumni Weekend</h5>
+                            <p style="color: #6C3428;">
+                                <i class="far fa-calendar-alt me-1"></i>  February 18-20, 2025 | All Day
+                                <br>
+                                <i class="fas fa-map-marker-alt me-1"></i> Campus-wide
+                            </p>
+                            <p style="color: #6C3428;">Reunion events for alumni from all graduating classes.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm mt-2" style="border-radius: 10px; color: white; background-color: #6C3428 ;">View Photos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <!-- Past Events / Archives -->
+
+    <!-- Footer Start -->
+         <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                <h4>About</h4>
+                <p>Our university is committed to academic excellence and student success.</p>
+                </div>
+                <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Contact Info</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+                </div>
+                <div class="footer-column">
+                <h4>Campus Address</h4>
+                <p>Pyinnyar Panknin University , Myanaung, Ayeyarwaddy Myanmar</p>
+                </div>
+                <div class="footer-column">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.744135976519!2d95.32630067464636!3d18.26754727685533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c74149ab560691%3A0x8e3ab8b6a14524f7!2sPyinnyar%20Pankhin%20English%20Training%20Center!5e0!3m2!1sen!2smm!4v1748075909563!5m2!1sen!2smm" width="100%" height="100%" style="border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </footer>
+    <!-- Footer End -->
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -8,6 +8,6 @@ class AcademicsController extends Controller
 {
     public function index()
     {
-        return inertia('Academics');
+        return view('academics');
     }
 }

@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Academics Page</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8e+z5l5c5e5f5e5f5e5f5e5f5e5f5e5f5e" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  </head>
+  <body>
+        <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white" style="border: 1px solid #FF7300;">
+        <div class="container-fluid">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="" style="width: 50px; height: 50px;">
+            <a class="navbar-brand ms-3 fw-bold" href="#" style="color: #FF7300;">Pyinnyar Pankhin <br> University</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav " style="margin-left: 50px;">
+                <li class="nav-item menu " style="margin-right: 50px;">
+                <a class="nav-link active" aria-current="page" href="{{ route('home') }}" >Home</a>
+                </li>
+                <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('academics') }}">Academics</a>
+                </li>
+                <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('department') }}">Department</a>
+                </li>
+                <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('admissions') }}">Admissions</a>
+                </li>
+                <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('library') }}">Library</a>
+                </li>
+                <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('about') }}">About</a>
+                </li>
+                <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('event') }}">Events</a>
+                </li>
+                <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('contact') }}">Contact</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+         <!-- Navbar End -->
+
+            <!-- hero section start -->
+          <section class="hero-section-academics">
+            <div class="container">
+                <div class="intro-text1">
+                    <p class="lead-1" style="font-size: xx-large;color: #FF7300;"> Empowering Minds, Shaping Futures</p>
+                    <p class="lead-2" style="font-size: x-large">Welcome to our vibrant academic community where excellence in teaching, learning, and research comes together to create transformative educational experiences.</p>
+                </div>
+                <button class="butn">Explore Programs</button>
+            </div>
+          </section>
+          <!-- hero section end -->
+
+          <!-- Undergraduate Degrees Start -->
+           <div class="container mt-5">
+            <h2 class="text-center" style="color: #FF7300;">Programs Offered</h2>
+        <div class="container my-5 border p-4 shadow-sm bg-white">
+
+                <h2 class="fw-bold text-orange mb-4">Undergraduate Degrees</h2>
+                <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-dark custom-header">
+                    <tr>
+                        <th scope="col">Program Name</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">Bachelor of Science (BSc)</td>
+                        <td class="fw-bold" style="color: #6C3428;">4 years</td>
+                        <td class="fw-bold text-orange">View Specializations</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">Bachelor of Arts (BA)</td>
+                        <td class="fw-bold" style="color: #6C3428;">3 years</td>
+                        <td class="fw-bold text-orange">View Majors</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">Bachelor of Engineering (BEng)</td>
+                        <td class="fw-bold" style="color: #6C3428;">4 years</td>
+                        <td class="fw-bold text-orange">Engineering Disciplines</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+           </div>
+
+            <!-- Undergraduate Degrees End -->
+
+             <!-- Master's Degrees and Doctoral Programs Start  -->
+            <div class="container  my-5 border p-4 shadow-sm bg-white ">
+                <h2 style="font-weight: bold; color: #ff7300;">Master's Degrees</h2>
+                <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-dark custom-header">
+                    <tr>
+                        <th scope="col">Program Name</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Format</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">Master of Business Administration (MBA)</td>
+                        <td class="fw-bold" style="color: #6C3428;">2 years</td>
+                        <td class="fw-bold" style="color: #6C3428;">Full–time/Part–time</td>
+                        <td class="fw-bold text-orange">Concentrations</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">Master of Science (MSc)</td>
+                        <td class="fw-bold" style="color: #6C3428;">1.5–2 years</td>
+                        <td class="fw-bold" style="color: #6C3428;">Thesis/Coursework</td>
+                        <td class="fw-bold text-orange">Research Areas</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">Master of Engineering (MEng)</td>
+                        <td class="fw-bold" style="color: #6C3428;">2 years</td>
+                        <td class="fw-bold" style="color: #6C3428;">Project-based</td>
+                        <td class="fw-bold text-orange">Industry Links</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <!-- Doctoral Degrees -->
+                <h2 class="mt-5" style="font-weight: bold; color: #ff7300;">Doctoral Degrees (PhD)</h2>
+                <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-dark custom-header">
+                    <tr>
+                        <th scope="col">Program Name</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Format</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">PhD in Sciences</td>
+                        <td class="fw-bold" style="color: #6C3428;">3–5 years</td>
+                        <td class="fw-bold" style="color: #6C3428;">Laboratory Research</td>
+                        <td class="fw-bold text-orange">Faculty Supervisors</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">PhD in Humanities</td>
+                        <td class="fw-bold" style="color: #6C3428;">4–6 years</td>
+                        <td class="fw-bold" style="color: #6C3428;">Theoretical Research</td>
+                        <td class="fw-bold text-orange">Department Info</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold" style="color: #6C3428;">Professional Doctorates</td>
+                        <td class="fw-bold" style="color: #6C3428;">3–4 years</td>
+                        <td class="fw-bold" style="color: #6C3428;">Applied Research</td>
+                        <td class="fw-bold text-orange">Case Studies</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+             <!-- Master's Degrees and Doctoral Programs End -->
+
+        <!-- Academic Resources -->
+        <section class="section section-alt">
+        <div class="container">
+            <h2  style="color: #6C3428;">Academic Resources</h2>
+            <p style="color: #6C3428;">Essential resources to support your academic journey.</p>
+
+            <div class="row g-4 mt-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="resource-card">
+                <h4 style="color: #6C3428;">Course Catalog</h4>
+                <p style="color: #6C3428;">Complete listing of all courses offered across all programs and faculties.</p>
+                <a href="#" class="view-more">Access Catalog →</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="resource-card">
+                <h4 style="color: #6C3428;">Academic Calendar</h4>
+                <p style="color: #6C3428;">Important dates, deadlines, and events for the current academic year.</p>
+                <a href="#" class="view-more">View Calendar →</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="resource-card">
+                <h4 style="color: #6C3428;">Examination Info</h4>
+                <p style="color: #6C3428;">Schedules, policies, and resources for midterm and final examinations.</p>
+                <a href="#" class="view-more">Learn More →</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="resource-card">
+                <h4 style="color: #6C3428;">Scholarships & Financial Aid</h4>
+                <p style="color: #6C3428;">Information about funding opportunities, grants, and financial support.</p>
+                <a href="#" class="view-more">Explore Options →</a>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Student Support & Guidance -->
+        <section class="section">
+        <div class="container">
+            <h2 style="color: #6C3428;">Student Support & Guidance</h2>
+            <p style="color: #6C3428;">We provide comprehensive support services to help you succeed in your academic journey.</p>
+
+            <div class="row g-4 mt-4">
+            <div class="col-md-4">
+                <div class="support-card">
+                <h4 style="color: #6C3428;">Academic Advising</h4>
+                <p style="color: #6C3428;">Personalized guidance on course selection, degree requirements, and academic planning.</p>
+                <a href="#" class="view-more">Learn More →</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="support-card">
+                <h4 style="color: #6C3428;">Tutoring Services</h4>
+                <p style="color: #6C3428;">Free peer tutoring and academic support for challenging courses across all disciplines.</p>
+                <a href="#" class="view-more">Find Help →</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="support-card">
+                <h4 style="color: #6C3428;">Career Guidance</h4>
+                <p style="color: #6C3428;">Career counseling, internship placement, and job search support services.</p>
+                <a href="#" class="view-more">Explore Services →</a>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Global Opportunities -->
+        <section class="section section-alt">
+        <div class="container">
+            <h2 style="color: #6C3428;">Global Opportunities</h2>
+            <p style="color: #6C3428;">Expand your horizons through our international programs and partnerships.</p>
+
+            <div class="row g-4 mt-4">
+            <div class="col-md-6">
+                <div class="resource-card">
+                <h4 style="color: #6C3428;">Study Abroad</h4>
+                <p style="color: #6C3428;">Semester or year-long exchange programs with 100+ partner universities worldwide.</p>
+                <a href="#" class="view-more">Explore Programs →</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="resource-card">
+                <h4 style="color: #6C3428;">International Partnerships</h4>
+                <p style="color: #6C3428;">Dual-degree programs and collaborative research opportunities with global institutions.</p>
+                <a href="#" class="view-more">View Partners →</a>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Resources & Downloads -->
+        <section class="section">
+        <div class="container">
+            <h2 style="color: #6C3428;">Resources & Downloads</h2>
+            <p style="color: #6C3428;">Access important documents and forms for your academic needs.</p>
+
+            <div class="row g-4 mt-4">
+            <div class="col-md-4">
+                <div class="download-card">
+                <div class="download-icon">📘</div>
+                <div>
+                    <h5 style="color: #6C3428;">Course Brochures</h5>
+                    <a href="#" class="view-more">Download PDF →</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="download-card">
+                <div class="download-icon">📅</div>
+                <div>
+                    <h5 style="color: #6C3428;">Timetables</h5>
+                    <a href="#" class="view-more">Download →</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="download-card">
+                <div class="download-icon">📝</div>
+                <div>
+                    <h5 style="color: #6C3428;">Academic Policies</h5>
+                    <a href="#" class="view-more">View Handbook →</a>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+           <!-- Footer Start -->
+         <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                <h4>About</h4>
+                <p>Our university is committed to academic excellence and student success.</p>
+                </div>
+                <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Contact Info</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+                </div>
+                <div class="footer-column">
+                <h4>Campus Address</h4>
+                <p>Pyinnyar Panknin University , Myanaung, Ayeyarwaddy Myanmar</p>
+                </div>
+                <div class="footer-column">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3788.744135976519!2d95.32630067464636!3d18.26754727685533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c74149ab560691%3A0x8e3ab8b6a14524f7!2sPyinnyar%20Pankhin%20English%20Training%20Center!5e0!3m2!1sen!2smm!4v1748075909563!5m2!1sen!2smm" width="100%" height="100%" style="border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </footer>
+    <!-- Footer End -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  </body>
+</html>
