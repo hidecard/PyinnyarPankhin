@@ -27,11 +27,11 @@
 - [ ] Convert Admin/index.html to React AdminDashboard component
 - [ ] Convert Admin/login.html to React AdminLogin component
 - [ ] Convert Admin/signup.html to React AdminSignup component
-- [ ] Convert Admin/student.html to React AdminStudent component
+- [x] Convert Admin/student.html to Blade admin.students view
 - [ ] Convert Admin/academic.html to React AdminAcademic component
 - [ ] Convert Admin/reports.html to React AdminReports component
 - [ ] Convert Admin/setting.html to React AdminSetting component
-- [ ] Convert Admin/academics-clendar.html to React AdminCalendar component
+- [x] Convert Admin/academics-clendar.html to Blade admin.calendar view
 
 ## Routing and Navigation
 - [x] Set up Inertia routes in pyinnyarpankhin/routes/web.php
@@ -43,3 +43,7 @@
 - [x] Test the app locally: run `php artisan serve` and `npm run dev`
 - [ ] Verify all pages load correctly
 - [ ] Check authentication flows
+
+## Admin UI Blade Template Update
+- [x] Update admin blade template to match home.blade.php format (doctype, head, bootstrap version)
+- [x] Test /admin route: Page loads with HTTP 200, correct HTML structure, Bootstrap 5.3.6, and Font Awesome links

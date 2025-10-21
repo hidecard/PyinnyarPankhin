@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/admin-style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8e+z5l5c5a5e5a5e5a5e5a5e5a5e5a5e5a5" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css" rel="stylesheet">
+  </head>
+<body>
+    <!-- sidebar start -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-university me-2"></i>Pyinnyar Pankhin</h3>
+            <small>Admin Dashboard</small>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li>
+                <a href="#" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Academic</span>
+                    <i class="fas fa-angle-down ms-auto"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('admin') }}#academic">Degree Programs</a></li>
+                    <li><a href="{{ route('admin') }}#academic">Majors</a></li>
+                    <li><a href="{{ route('admin') }}#academic">Departments</a></li>
+                    <li><a href="{{ route('admin') }}#academic">Faculties</a></li>
+                    <li><a href="{{ route('admin') }}#academic">Courses</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{ route('admin') }}#students">
+                    <i class="fas fa-users"></i>
+                    <span>Students</span>
+                </a>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Academic Calendar</span>
+                    <i class="fas fa-angle-down ms-auto"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('admin') }}#calendar">Events</a></li>
+                    <li><a href="{{ route('admin') }}#calendar">Holidays</a></li>
+                    <li><a href="{{ route('admin') }}#calendar">Exam Schedule</a></li>
+                    <li><a href="{{ route('admin') }}#calendar">Class Schedules</a></li>
+                </ul>
+            </li>
+
+            <li class="has-submenu">
+                <a href="#">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reports</span>
+                    <i class="fas fa-angle-down ms-auto"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li><a href="#">Enrollment Reports</a></li>
+                    <li><a href="#">Grade Reports</a></li>
+                    <li><a href="#">Faculty Workload</a></li>
+                    <li><a href="#">Financial Reports</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{ route('admin') }}#settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- Main Content start-->
+    <div class="main-content">
+        <div class="header">
+            <h1 style="color: #FF7300;"><i class="fas fa-tachometer-alt me-2" style="color: #FF7300;"></i> Dashboard Overview</h1>
+            <div class="user-info">
+                <span>{{ Auth::user()->name ?? 'Admin User' }}</span>
+            </div>
+        </div>
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon text-primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h5 class="card-title" style="color: #6C3428;">Total Students</h5>
+                    <p class="card-value" style="color: #6C3428;">2,450</p>
+                    <a href="#" class="card-link">View Details</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon text-success">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h5 class="card-title" style="color: #6C3428;">Total Courses</h5>
+                    <p class="card-value" style="color: #6C3428;">156</p>
+                    <a href="#" class="card-link">View Details</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon text-warning">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h5 class="card-title" style="color: #6C3428;">Total Faculties</h5>
+                    <p class="card-value" style="color: #6C3428;">87</p>
+                    <a href="#" class="card-link">View Details</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon text-danger">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h5 class="card-title" style="color: #6C3428;">Total Departments</h5>
+                    <p class="card-value" style="color: #6C3428;">12</p>
+                    <a href="#" class="card-link">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 style="color: #6C3428;">Enrollment Trends</h3>
+                    <select class="form-select" style="width: auto;">
+                        <option>Last 6 Months</option>
+                        <option>This Year</option>
+                        <option>Last Year</option>
+                    </select>
+                </div>
+                <canvas id="enrollmentChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 style="color: #6C3428;">Department Distribution</h3>
+                </div>
+                <canvas id="departmentChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Activity and Course Management -->
+        <div class="row">
+            <div class="col-md-7">
+                <div class="course-management">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 style="color: #6C3428;">Course Management</h3>
+                        <button class="btn btn-primary" onclick="openCourseModal()">
+                            <i class="fas fa-plus"></i> Add Course
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="color: #6C3428;">Course Code</th>
+                                    <th style="color: #6C3428;">Course Name</th>
+                                    <th style="color: #6C3428;">Department</th>
+                                    <th style="color: #6C3428;">Credits</th>
+                                    <th style="color: #6C3428;">Instructor</th>
+                                    <th style="color: #6C3428;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="color: #6C3428;">CS-101</td>
+                                    <td style="color: #6C3428;">Introduction to Computer Science</td>
+                                    <td style="color: #6C3428;">Computer Science</td>
+                                    <td style="color: #6C3428;">3</td>
+                                    <td style="color: #6C3428;">Dr. Smith</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6C3428;">MATH-201</td>
+                                    <td style="color: #6C3428;">Calculus II</td>
+                                    <td style="color: #6C3428;">Mathematics</td>
+                                    <td style="color: #6C3428;">4</td>
+                                    <td style="color: #6C3428;">Dr. Johnson</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6C3428;">ENG-101</td>
+                                    <td style="color: #6C3428;">English Composition</td>
+                                    <td style="color: #6C3428;">English</td>
+                                    <td style="color: #6C3428;">3</td>
+                                    <td style="color: #6C3428;">Prof. Williams</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6C3428;">PHYS-202</td>
+                                    <td style="color: #6C3428;">Modern Physics</td>
+                                    <td style="color: #6C3428;">Physics</td>
+                                    <td style="color: #6C3428;">4</td>
+                                    <td style="color: #6C3428;">Dr. Brown</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="recent-activity">
+                    <h3 style="color: #6C3428;">Recent Activity</h3>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p style="color: #6C3428;">New student registration: John Doe (ID: 20230045)</p>
+                                <small class="activity-time">10 minutes ago</small>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p style="color: #6C3428;">Course "Data Structures" updated by Dr. Smith</p>
+                                <small class="activity-time">25 minutes ago</small>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p style="color: #6C3428;">New academic event added: Midterm Exams</p>
+                                <small class="activity-time">1 hour ago</small>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p style="color: #6C3428;">New faculty member added: Prof. Anderson</p>
+                                <small class="activity-time">2 hours ago</small>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p style="color: #6C3428;">Department "Computer Science" updated</p>
+                                <small class="activity-time">3 hours ago</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Semester Status -->
+        <div class="chart-container mt-4">
+            <div class="chart-header">
+                <h3 style="color: #6C3428;">Current Semester Status</h3>
+                <div>
+                    <span class="badge bg-primary" style="color: white;">Spring 2023</span>
+                    <span class="ms-2" style="color: #6C3428;">Week 8 of 16</span>
+                </div>
+            </div>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50% Complete</div>
+            </div>
+            <div class="mt-3">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Upcoming: Midterm exams scheduled for next week (March 15-19)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Course</h5>
+                    <button type="button" class="close" onclick="closeCourseModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="courseForm">
+                        <div class="form-group">
+                            <label for="courseCode" class="form-label">Course Code</label>
+                            <input type="text" class="form-control" id="courseCode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseName" class="form-label">Course Name</label>
+                            <input type="text" class="form-control" id="courseName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="department" class="form-label">Department</label>
+                            <select class="form-control" id="department" required>
+                                <option value="">Select Department</option>
+                                <option>Computer Science</option>
+                                <option>Mathematics</option>
+                                <option>Physics</option>
+                                <option>English</option>
+                                <option>Biology</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="credits" class="form-label">Credits</label>
+                            <input type="number" class="form-control" id="credits" min="1" max="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="instructor" class="form-label">Instructor</label>
+                            <select class="form-control" id="instructor" required>
+                                <option value="">Select Instructor</option>
+                                <option>Dr. Smith</option>
+                                <option>Dr. Johnson</option>
+                                <option>Prof. Williams</option>
+                                <option>Dr. Brown</option>
+                                <option>Prof. Anderson</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="semester" class="form-label">Semester</label>
+                            <select class="form-control" id="semester" required>
+                                <option value="">Select Semester</option>
+                                <option>Fall 2023</option>
+                                <option>Spring 2023</option>
+                                <option>Summer 2023</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeCourseModal()">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveCourse()">Save Course</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script>
+        // Initialize sidebar submenu toggle
+        document.querySelectorAll('.has-submenu > a').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const submenu = this.parentElement.querySelector('.sidebar-submenu');
+                this.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enrollment Chart
+            const enrollmentCtx = document.getElementById('enrollmentChart').getContext('2d');
+            const enrollmentChart = new Chart(enrollmentCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'New Students',
+                        data: [120, 190, 170, 220, 180, 250],
+                        borderColor: 'rgba(255, 115, 0, 1)',
+                        backgroundColor: 'rgba(255, 115, 0, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Department Chart
+            const departmentCtx = document.getElementById('departmentChart').getContext('2d');
+            const departmentChart = new Chart(departmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Computer Science', 'Mathematics', 'Physics', 'English', 'Biology', 'Chemistry'],
+                    datasets: [{
+                        data: [350, 280, 200, 180, 150, 120],
+                        backgroundColor: [
+                            'rgba(255, 115, 0, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+        });
+
+        // Course Modal Functions
+        function openCourseModal() {
+            document.getElementById('courseModal').style.display = 'block';
+        }
+
+        function closeCourseModal() {
+            document.getElementById('courseModal').style.display = 'none';
+        }
+
+        function saveCourse() {
+            // Here you would typically save the course data to your backend
+            alert('Course saved successfully!');
+            closeCourseModal();
+            // Reset form
+            document.getElementById('courseForm').reset();
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('courseModal');
+            if (event.target == modal) {
+                closeCourseModal();
+            }
+        }
+    </script>
+</body>
+</html>
