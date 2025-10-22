@@ -12,6 +12,7 @@ use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\EventController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/academics', [AcademicsController::class, 'index'])->name('academics');
@@ -38,6 +39,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::get('/admin/academic', [AdminController::class, 'academic'])->name('admin.academic');
+    Route::get('/admin/calendar', [AdminController::class, 'calendar'])->name('admin.calendar');
 
     // User Management Routes
     Route::resource('admin/users', UserManagementController::class, ['as' => 'admin']);
@@ -53,6 +55,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/departments', DepartmentController::class, ['as' => 'admin']);
     Route::resource('admin/majors', MajorController::class, ['as' => 'admin']);
     Route::resource('admin/faculties', FacultyController::class, ['as' => 'admin']);
+    Route::resource('admin/events', EventController::class, ['as' => 'admin']);
+    Route::patch('admin/events/{event}/toggle', [EventController::class, 'toggle'])->name('admin.events.toggle');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

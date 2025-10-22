@@ -39,8 +39,8 @@ class AdminController extends Controller
 
     public function calendar()
     {
-        // You can pass data to the view here if needed, e.g., from database
-        return view('admin.calendar');
+        $events = \App\Models\Event::where('is_active', true)->orderBy('event_date', 'asc')->get();
+        return view('admin.calendar', compact('events'));
     }
 
     public function reports()

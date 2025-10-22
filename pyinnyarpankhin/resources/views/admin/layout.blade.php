@@ -33,6 +33,20 @@
             </li>
 
             <li>
+                <a href="{{ route('admin.events.index') }}">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Events</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.calendar') }}">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="{{ route('admin.users.index') }}">
                     <i class="fas fa-users-cog"></i>
                     <span>User Management</span>
