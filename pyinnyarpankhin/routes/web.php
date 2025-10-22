@@ -7,6 +7,11 @@ use App\Http\Controllers\AcademicsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\RoleManagementController;
+use App\Http\Controllers\DurationController;
+use App\Http\Controllers\DegreeController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\FacultyController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/academics', [AcademicsController::class, 'index'])->name('academics');
@@ -32,6 +37,7 @@ Route::get('/contact', function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+    Route::get('/admin/academic', [AdminController::class, 'academic'])->name('admin.academic');
 
     // User Management Routes
     Route::resource('admin/users', UserManagementController::class, ['as' => 'admin']);
@@ -40,6 +46,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/roles', RoleManagementController::class, ['as' => 'admin']);
     Route::post('admin/roles/assign', [RoleManagementController::class, 'assignRole'])->name('admin.roles.assign');
     Route::post('admin/roles/remove', [RoleManagementController::class, 'removeRole'])->name('admin.roles.remove');
+
+    // Academic Management Routes
+    Route::resource('admin/durations', DurationController::class, ['as' => 'admin']);
+    Route::resource('admin/degrees', DegreeController::class, ['as' => 'admin']);
+    Route::resource('admin/departments', DepartmentController::class, ['as' => 'admin']);
+    Route::resource('admin/majors', MajorController::class, ['as' => 'admin']);
+    Route::resource('admin/faculties', FacultyController::class, ['as' => 'admin']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Duration extends Model
+{
+    use HasFactory;
+
+    protected $table = 'duration';
+
+    protected $fillable = [
+        'length',
+    ];
+
+    public function degrees()
+    {
+        return $this->hasMany(Degree::class);
+    }
+}

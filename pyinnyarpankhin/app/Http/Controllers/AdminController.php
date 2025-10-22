@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Degree;
+use App\Models\Major;
+use App\Models\Department;
+use App\Models\Faculty;
 
 class AdminController extends Controller
 {
@@ -14,8 +18,17 @@ class AdminController extends Controller
 
     public function academic()
     {
-        // You can pass data to the view here if needed, e.g., from database
-        return view('admin.academic');
+        $degreesCount = Degree::count();
+        $majorsCount = Major::count();
+        $departmentsCount = Department::count();
+        $facultiesCount = Faculty::count();
+
+        return view('admin.academic', compact(
+            'degreesCount',
+            'majorsCount',
+            'departmentsCount',
+            'facultiesCount'
+        ));
     }
 
     public function students()
