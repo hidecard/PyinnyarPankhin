@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AdminLoginController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
 // Guest routes (for non-logged-in users)
@@ -25,4 +22,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/admin/logout', [AdminLoginController::class, 'logout'])
         ->name('admin.logout');
+
+    // User Management Routes
+    Route::resource('admin/users', UserManagementController::class, [
+        'as' => 'admin'
+    ]);
 });

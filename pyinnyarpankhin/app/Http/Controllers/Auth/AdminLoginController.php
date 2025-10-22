@@ -26,7 +26,7 @@ class AdminLoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            if ($user->role === 'admin') {
+            if ($user->hasRole('admin')) {
                 $request->session()->regenerate();
                 return redirect()->intended(route('admin'));
             }

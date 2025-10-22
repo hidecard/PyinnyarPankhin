@@ -1,91 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/admin-style.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8e+z5l5c5a5e5a5e5a5e5a5e5a5e5a5e5a5" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css" rel="stylesheet">
-  </head>
-<body>
-    <!-- sidebar start -->
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h3><i class="fas fa-university me-2"></i>Pyinnyar Pankhin</h3>
-            <small>Admin Dashboard</small>
-        </div>
+@extends('admin.layout')
 
-        <ul class="sidebar-menu">
-            <li>
-                <a href="#" class="active">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
+@section('title', 'Dashboard Overview')
 
-            <li class="sidebar-menu">
-                <a href="{{ route('admin.academic') }}">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Academic</span>
-                    <i class="fas fa-angle-down ms-auto"></i>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin') }}#students">
-                    <i class="fas fa-users"></i>
-                    <span>Students</span>
-                </a>
-            </li>
-
-            <li class="has-submenu">
-                <a href="#">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Academic Calendar</span>
-                    <i class="fas fa-angle-down ms-auto"></i>
-                </a>
-                <ul class="sidebar-submenu">
-                    <li><a href="{{ route('admin') }}#calendar">Events</a></li>
-                    <li><a href="{{ route('admin') }}#calendar">Holidays</a></li>
-                    <li><a href="{{ route('admin') }}#calendar">Exam Schedule</a></li>
-                    <li><a href="{{ route('admin') }}#calendar">Class Schedules</a></li>
-                </ul>
-            </li>
-
-            <li class="has-submenu">
-                <a href="#">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Reports</span>
-                    <i class="fas fa-angle-down ms-auto"></i>
-                </a>
-                <ul class="sidebar-submenu">
-                    <li><a href="#">Enrollment Reports</a></li>
-                    <li><a href="#">Grade Reports</a></li>
-                    <li><a href="#">Faculty Workload</a></li>
-                    <li><a href="#">Financial Reports</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="{{ route('admin') }}#settings">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- sidebar end -->
-
-    <!-- Main Content start-->
-    <div class="main-content">
-        <div class="header">
-            <h1 style="color: #FF7300;"><i class="fas fa-tachometer-alt me-2" style="color: #FF7300;"></i> Dashboard Overview</h1>
-            <div class="user-info">
-                <span>{{ Auth::user()->name ?? 'Admin User' }}</span>
-            </div>
-        </div>
+@section('content')
         <!-- Dashboard Cards -->
         <div class="dashboard-cards">
             <div class="card">
@@ -375,18 +292,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script>
-        // Initialize sidebar submenu toggle
-        document.querySelectorAll('.has-submenu > a').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const submenu = this.parentElement.querySelector('.sidebar-submenu');
-                this.parentElement.classList.toggle('active');
-            });
-        });
-
         // Initialize charts
         document.addEventListener('DOMContentLoaded', function() {
             // Enrollment Chart
@@ -474,5 +380,4 @@
             }
         }
     </script>
-</body>
-</html>
+@endsection

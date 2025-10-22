@@ -25,6 +25,45 @@ class User extends Authenticatable
         'role',
     ];
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole($role)
+    {
+        if (is_string($role)) {
+            return $this->roles->contains('name', $role);
+        }
+        return !! $role->intersect($this->roles)->count();
+    }
+
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::where('name', $role)->first();
+        }
+        return $this->roles()->attach($role);
+    }
+
+    public function removeRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::where('name', $role)->first();
+        }
+        return $this->roles()->detach($role);
+    }
+
+    public function hasPermission($permission)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->hasPermission($permission)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
