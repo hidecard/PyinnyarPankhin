@@ -218,6 +218,18 @@
     color: #adb5bd;
 }
 
+.calendar-day.has-events {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border: 2px solid #2196f3;
+    box-shadow: 0 2px 4px rgba(33, 150, 243, 0.2);
+}
+
+.calendar-day.has-events.today {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe082 100%);
+    border: 2px solid #ff9800;
+    box-shadow: 0 2px 4px rgba(255, 152, 0, 0.3);
+}
+
 .event-item {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -345,6 +357,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const eventDate = new Date(event.event_date);
                 return eventDate.toDateString() === date.toDateString();
             });
+
+            // Highlight days with events
+            if (dayEvents.length > 0) {
+                dayDiv.classList.add('has-events');
+            }
 
             dayEvents.forEach(event => {
                 const eventDiv = document.createElement('a');
