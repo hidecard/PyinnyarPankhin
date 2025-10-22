@@ -1,10 +1,15 @@
-# Admin UI Conversion to Inertia.js React Page
+# TODO: Restructure Authentication and Add User Management CRUD
+
+## Issues to Fix
+1. Remove regular user login functionality
+2. Keep only admin login
+3. Add user management CRUD to admin dashboard
 
 ## Tasks
-- [x] Check and install necessary dependencies (e.g., react-chartjs-2 for charts)
-- [ ] Create resources/js/pages/Admin.tsx: Convert Blade template to React component using Tailwind CSS
-- [ ] Update app/Http/Controllers/AdminController.php: Change index() method to render Inertia page
-- [ ] Build assets (npm run build)
-- [ ] Test /admin route to ensure new UI renders correctly
-- [ ] Debug and fix any issues (charts, modals, styling)
-- [x] Update admin blade template to match home.blade.php format (doctype, head, bootstrap version)
+- [ ] Remove regular login routes and views
+- [ ] Update routes to only allow admin login
+- [ ] Create UserManagementController for CRUD operations
+- [ ] Add user management routes
+- [ ] Update admin dashboard with user management links
+- [ ] Create user management views (index, create, edit)
+- [ ] Test admin login and user management functionality

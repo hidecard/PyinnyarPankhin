@@ -1,26 +1,28 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
+// Guest routes (for non-logged-in users)
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
+    // Admin login only
+    Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])
+        ->name('admin.login');
 
-    Route::post('register', [RegisteredUserController::class, 'store'])
-        ->name('register.store');
+    Route::post('admin/login', [AdminLoginController::class, 'login'])
+        ->name('admin.login.post');
+});
 
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
+// Authenticated routes (for logged-in users)
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.index');
+    })->name('admin');
 
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
-
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
-
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.store');
+    Route::post('/admin/logout', [AdminLoginController::class, 'logout'])
+        ->name('admin.logout');
 });

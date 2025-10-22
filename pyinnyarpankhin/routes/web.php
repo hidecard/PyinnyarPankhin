@@ -27,12 +27,14 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::get('/admin/academic', [AdminController::class, 'academic'])->name('admin.academic');
-Route::get('/admin/students', [AdminController::class, 'students'])->name('admin.students');
-Route::get('/admin/calendar', [AdminController::class, 'calendar'])->name('admin.calendar');
-Route::get('/admin/reports', [AdminController::class, 'reports'])->name('admin.reports');
-Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/admin/academic', [AdminController::class, 'academic'])->name('admin.academic');
+    Route::get('/admin/students', [AdminController::class, 'students'])->name('admin.students');
+    Route::get('/admin/calendar', [AdminController::class, 'calendar'])->name('admin.calendar');
+    Route::get('/admin/reports', [AdminController::class, 'reports'])->name('admin.reports');
+    Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
