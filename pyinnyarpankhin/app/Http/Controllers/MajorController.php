@@ -11,21 +11,21 @@ class MajorController extends Controller
 {
     public function index()
     {
-        $majors = Major::with('department')->get();
+        $majors = Major::with('degrees')->get();
         return view('admin.majors.index', compact('majors'));
     }
 
     public function create()
     {
-        $departments = Department::all();
-        return view('admin.majors.create', compact('departments'));
+        $degrees = \App\Models\Degree::all();
+        return view('admin.majors.create', compact('degrees'));
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'major_name' => 'required|string|max:255',
-            'department_id' => 'required|exists:department,id',
+            'degree_id' => 'required|exists:degree,id',
         ]);
 
         if ($validator->fails()) {
@@ -34,7 +34,13 @@ class MajorController extends Controller
                 ->withInput();
         }
 
-        Major::create($request->only(['major_name', 'department_id']));
+        $major = Major::create([
+            'major_name' => $request->major_name,
+            'department_id' => 1, // Default department, will be updated based on degree
+        ]);
+
+        // Attach major to degree
+        $major->degrees()->attach($request->degree_id);
 
         return redirect()->route('admin.majors.index')
             ->with('success', 'Major created successfully.');
@@ -48,15 +54,15 @@ class MajorController extends Controller
 
     public function edit(Major $major)
     {
-        $departments = Department::all();
-        return view('admin.majors.edit', compact('major', 'departments'));
+        $degrees = \App\Models\Degree::all();
+        return view('admin.majors.edit', compact('major', 'degrees'));
     }
 
     public function update(Request $request, Major $major)
     {
         $validator = Validator::make($request->all(), [
             'major_name' => 'required|string|max:255',
-            'department_id' => 'required|exists:department,id',
+            'degree_id' => 'required|exists:degree,id',
         ]);
 
         if ($validator->fails()) {
@@ -65,7 +71,10 @@ class MajorController extends Controller
                 ->withInput();
         }
 
-        $major->update($request->only(['major_name', 'department_id']));
+        $major->update(['major_name' => $request->major_name]);
+
+        // Sync degrees relationship
+        $major->degrees()->sync([$request->degree_id]);
 
         return redirect()->route('admin.majors.index')
             ->with('success', 'Major updated successfully.');

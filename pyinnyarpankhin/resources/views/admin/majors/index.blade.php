@@ -36,7 +36,7 @@
                             <tr>
                                 <td>{{ $major->id }}</td>
                                 <td>{{ $major->major_name }}</td>
-                                <td>{{ $major->degree->degree_name ?? 'N/A' }}</td>
+                                <td>{{ $major->degrees->first()?->degree_name ?? 'N/A' }}</td>
                                 <td>{{ $major->created_at->format('M d, Y') }}</td>
                                 <td>
                                     <a href="{{ route('admin.majors.show', $major) }}" class="btn btn-sm btn-info">
