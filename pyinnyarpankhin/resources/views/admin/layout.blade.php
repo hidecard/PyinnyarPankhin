@@ -26,6 +26,13 @@
             </li>
 
             <li>
+                <a href="{{ route('admin.academic') }}">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Academics</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="{{ route('admin.users.index') }}">
                     <i class="fas fa-users-cog"></i>
                     <span>User Management</span>
