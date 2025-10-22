@@ -25,19 +25,12 @@
                 </a>
             </li>
 
-            <li class="has-submenu">
-                <a href="#">
+            <li class="sidebar-menu">
+                <a href="{{ route('admin.academic') }}">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Academic</span>
                     <i class="fas fa-angle-down ms-auto"></i>
                 </a>
-                <ul class="sidebar-submenu">
-                    <li><a href="{{ route('admin') }}#academic">Degree Programs</a></li>
-                    <li><a href="{{ route('admin') }}#academic">Majors</a></li>
-                    <li><a href="{{ route('admin') }}#academic">Departments</a></li>
-                    <li><a href="{{ route('admin') }}#academic">Faculties</a></li>
-                    <li><a href="{{ route('admin') }}#academic">Courses</a></li>
-                </ul>
             </li>
 
             <li>
