@@ -10,6 +10,7 @@ use App\Models\Major;
 use App\Models\Degree;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Database\Seeders\AdmissionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -160,5 +161,8 @@ class DatabaseSeeder extends Seeder
             ]
         );
         $teacher->roles()->sync([$teacherRole->id]);
+
+        // Seed admissions
+        $this->call(AdmissionSeeder::class);
     }
 }

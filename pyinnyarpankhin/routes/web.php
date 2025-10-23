@@ -13,11 +13,12 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\AdmissionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/academics', [AcademicsController::class, 'index'])->name('academics');
 Route::get('/admissions', function () {
-    return Inertia::render('Admissions');
+    return view('admissions');
 })->name('admissions');
 Route::get('/department', function () {
     return view('department');
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/faculties', FacultyController::class, ['as' => 'admin']);
     Route::resource('admin/events', EventController::class, ['as' => 'admin']);
     Route::patch('admin/events/{event}/toggle', [EventController::class, 'toggle'])->name('admin.events.toggle');
+    Route::resource('admin/admissions', AdmissionController::class, ['as' => 'admin']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

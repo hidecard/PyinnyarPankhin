@@ -41,6 +41,13 @@
             </li>
 
             <li>
+                <a href="{{ route('admin.admissions.index') }}">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Admissions</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="{{ route('admin.calendar') }}">
                     <i class="fas fa-calendar"></i>
                     <span>Calendar</span>
