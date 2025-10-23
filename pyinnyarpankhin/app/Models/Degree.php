@@ -14,6 +14,7 @@ class Degree extends Model
     protected $fillable = [
         'degree_name',
         'duration_id',
+        'level',
     ];
 
     public function duration()

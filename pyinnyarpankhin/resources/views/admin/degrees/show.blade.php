@@ -32,6 +32,15 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
+                                <label class="form-label fw-bold">Level:</label>
+                                <p class="form-control-plaintext">{{ ucfirst($degree->level) }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
                                 <label class="form-label fw-bold">Duration:</label>
                                 <p class="form-control-plaintext">{{ $degree->duration->length }} years</p>
                             </div>

@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Duration;
+use App\Models\Department;
+use App\Models\Major;
+use App\Models\Degree;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,6 +18,92 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create durations
+        $duration4Years = Duration::firstOrCreate(['length' => 4]);
+        $duration3Years = Duration::firstOrCreate(['length' => 3]);
+        $duration2Years = Duration::firstOrCreate(['length' => 2]);
+        $duration5Years = Duration::firstOrCreate(['length' => 5]);
+
+        // Create departments
+        $scienceDept = Department::firstOrCreate(['department_name' => 'Department of Science']);
+        $engineeringDept = Department::firstOrCreate(['department_name' => 'Department of Engineering']);
+        $businessDept = Department::firstOrCreate(['department_name' => 'Department of Business']);
+        $humanitiesDept = Department::firstOrCreate(['department_name' => 'Department of Humanities']);
+
+        // Create majors
+        Major::firstOrCreate(['major_name' => 'Computer Science', 'department_id' => $scienceDept->id]);
+        Major::firstOrCreate(['major_name' => 'Physics', 'department_id' => $scienceDept->id]);
+        Major::firstOrCreate(['major_name' => 'Mechanical Engineering', 'department_id' => $engineeringDept->id]);
+        Major::firstOrCreate(['major_name' => 'Electrical Engineering', 'department_id' => $engineeringDept->id]);
+        Major::firstOrCreate(['major_name' => 'Business Administration', 'department_id' => $businessDept->id]);
+        Major::firstOrCreate(['major_name' => 'English Literature', 'department_id' => $humanitiesDept->id]);
+
+        // Create degrees
+        $bsc = Degree::firstOrCreate([
+            'degree_name' => 'Bachelor of Science (BSc)',
+            'duration_id' => $duration4Years->id,
+            'level' => 'undergraduate'
+        ]);
+
+        $ba = Degree::firstOrCreate([
+            'degree_name' => 'Bachelor of Arts (BA)',
+            'duration_id' => $duration3Years->id,
+            'level' => 'undergraduate'
+        ]);
+
+        $beng = Degree::firstOrCreate([
+            'degree_name' => 'Bachelor of Engineering (BEng)',
+            'duration_id' => $duration4Years->id,
+            'level' => 'undergraduate'
+        ]);
+
+        $mba = Degree::firstOrCreate([
+            'degree_name' => 'Master of Business Administration (MBA)',
+            'duration_id' => $duration2Years->id,
+            'level' => 'masters'
+        ]);
+
+        $msc = Degree::firstOrCreate([
+            'degree_name' => 'Master of Science (MSc)',
+            'duration_id' => $duration2Years->id,
+            'level' => 'masters'
+        ]);
+
+        $meng = Degree::firstOrCreate([
+            'degree_name' => 'Master of Engineering (MEng)',
+            'duration_id' => $duration2Years->id,
+            'level' => 'masters'
+        ]);
+
+        $phdScience = Degree::firstOrCreate([
+            'degree_name' => 'PhD in Sciences',
+            'duration_id' => $duration5Years->id,
+            'level' => 'doctoral'
+        ]);
+
+        $phdHumanities = Degree::firstOrCreate([
+            'degree_name' => 'PhD in Humanities',
+            'duration_id' => $duration5Years->id,
+            'level' => 'doctoral'
+        ]);
+
+        $professionalDoctorate = Degree::firstOrCreate([
+            'degree_name' => 'Professional Doctorates',
+            'duration_id' => $duration4Years->id,
+            'level' => 'doctoral'
+        ]);
+
+        // Attach majors to degrees
+        $bsc->majors()->sync([1, 2]); // Computer Science, Physics
+        $ba->majors()->sync([6]); // English Literature
+        $beng->majors()->sync([3, 4]); // Mechanical, Electrical Engineering
+        $mba->majors()->sync([5]); // Business Administration
+        $msc->majors()->sync([1, 2]); // Computer Science, Physics
+        $meng->majors()->sync([3, 4]); // Mechanical, Electrical Engineering
+        $phdScience->majors()->sync([1, 2]); // Computer Science, Physics
+        $phdHumanities->majors()->sync([6]); // English Literature
+        $professionalDoctorate->majors()->sync([5]); // Business Administration
+
         // Create roles
         $adminRole = Role::firstOrCreate(
             ['name' => 'admin'],

@@ -77,21 +77,19 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @forelse($undergraduateDegrees as $degree)
                     <tr>
-                        <td class="fw-bold" style="color: #6C3428;">Bachelor of Science (BSc)</td>
-                        <td class="fw-bold" style="color: #6C3428;">4 years</td>
-                        <td class="fw-bold text-orange">View Specializations</td>
+                        <td class="fw-bold" style="color: #6C3428;">{{ $degree->degree_name }}</td>
+                        <td class="fw-bold" style="color: #6C3428;">{{ $degree->duration->length }}</td>
+                        <td class="fw-bold text-orange">
+                            <a href="#majors" class="text-decoration-none">View Specializations</a>
+                        </td>
                     </tr>
+                    @empty
                     <tr>
-                        <td class="fw-bold" style="color: #6C3428;">Bachelor of Arts (BA)</td>
-                        <td class="fw-bold" style="color: #6C3428;">3 years</td>
-                        <td class="fw-bold text-orange">View Majors</td>
+                        <td colspan="3" class="text-center">No undergraduate degrees available</td>
                     </tr>
-                    <tr>
-                        <td class="fw-bold" style="color: #6C3428;">Bachelor of Engineering (BEng)</td>
-                        <td class="fw-bold" style="color: #6C3428;">4 years</td>
-                        <td class="fw-bold text-orange">Engineering Disciplines</td>
-                    </tr>
+                    @endforelse
                     </tbody>
                 </table>
                 </div>
@@ -114,24 +112,20 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @forelse($mastersDegrees as $degree)
                     <tr>
-                        <td class="fw-bold" style="color: #6C3428;">Master of Business Administration (MBA)</td>
-                        <td class="fw-bold" style="color: #6C3428;">2 years</td>
+                        <td class="fw-bold" style="color: #6C3428;">{{ $degree->degree_name }}</td>
+                        <td class="fw-bold" style="color: #6C3428;">{{ $degree->duration->length }}</td>
                         <td class="fw-bold" style="color: #6C3428;">Full–time/Part–time</td>
-                        <td class="fw-bold text-orange">Concentrations</td>
+                        <td class="fw-bold text-orange">
+                            <a href="#majors" class="text-decoration-none">Concentrations</a>
+                        </td>
                     </tr>
+                    @empty
                     <tr>
-                        <td class="fw-bold" style="color: #6C3428;">Master of Science (MSc)</td>
-                        <td class="fw-bold" style="color: #6C3428;">1.5–2 years</td>
-                        <td class="fw-bold" style="color: #6C3428;">Thesis/Coursework</td>
-                        <td class="fw-bold text-orange">Research Areas</td>
+                        <td colspan="4" class="text-center">No master's degrees available</td>
                     </tr>
-                    <tr>
-                        <td class="fw-bold" style="color: #6C3428;">Master of Engineering (MEng)</td>
-                        <td class="fw-bold" style="color: #6C3428;">2 years</td>
-                        <td class="fw-bold" style="color: #6C3428;">Project-based</td>
-                        <td class="fw-bold text-orange">Industry Links</td>
-                    </tr>
+                    @endforelse
                     </tbody>
                 </table>
                 </div>
@@ -149,32 +143,52 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @forelse($doctoralDegrees as $degree)
                     <tr>
-                        <td class="fw-bold" style="color: #6C3428;">PhD in Sciences</td>
-                        <td class="fw-bold" style="color: #6C3428;">3–5 years</td>
-                        <td class="fw-bold" style="color: #6C3428;">Laboratory Research</td>
-                        <td class="fw-bold text-orange">Faculty Supervisors</td>
+                        <td class="fw-bold" style="color: #6C3428;">{{ $degree->degree_name }}</td>
+                        <td class="fw-bold" style="color: #6C3428;">{{ $degree->duration->length }}</td>
+                        <td class="fw-bold" style="color: #6C3428;">Research-based</td>
+                        <td class="fw-bold text-orange">
+                            <a href="#majors" class="text-decoration-none">Faculty Supervisors</a>
+                        </td>
                     </tr>
+                    @empty
                     <tr>
-                        <td class="fw-bold" style="color: #6C3428;">PhD in Humanities</td>
-                        <td class="fw-bold" style="color: #6C3428;">4–6 years</td>
-                        <td class="fw-bold" style="color: #6C3428;">Theoretical Research</td>
-                        <td class="fw-bold text-orange">Department Info</td>
+                        <td colspan="4" class="text-center">No doctoral degrees available</td>
                     </tr>
-                    <tr>
-                        <td class="fw-bold" style="color: #6C3428;">Professional Doctorates</td>
-                        <td class="fw-bold" style="color: #6C3428;">3–4 years</td>
-                        <td class="fw-bold" style="color: #6C3428;">Applied Research</td>
-                        <td class="fw-bold text-orange">Case Studies</td>
-                    </tr>
+                    @endforelse
                     </tbody>
                 </table>
                 </div>
             </div>
              <!-- Master's Degrees and Doctoral Programs End -->
 
+        <!-- Majors Section -->
+        <section class="section section-alt" id="majors">
+        <div class="container">
+            <h2 style="color: #6C3428;">Majors and Specializations</h2>
+            <p style="color: #6C3428;">Explore the various majors and specializations offered by our departments.</p>
+
+            <div class="row g-4 mt-4">
+            @forelse($majors as $major)
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                <h4 style="color: #6C3428;">{{ $major->major_name }}</h4>
+                <p style="color: #6C3428;">Department: {{ $major->department->department_name }}</p>
+                <a href="#" class="view-more">Learn More →</a>
+                </div>
+            </div>
+            @empty
+            <div class="col-12">
+                <p class="text-center">No majors available</p>
+            </div>
+            @endforelse
+            </div>
+        </div>
+        </section>
+
         <!-- Academic Resources -->
-        <section class="section section-alt">
+        <section class="section">
         <div class="container">
             <h2  style="color: #6C3428;">Academic Resources</h2>
             <p style="color: #6C3428;">Essential resources to support your academic journey.</p>

@@ -29,6 +29,21 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="level" class="form-label">Level <span class="text-danger">*</span></label>
+                            <select class="form-select @error('level') is-invalid @enderror"
+                                    id="level" name="level" required>
+                                <option value="">Select Level</option>
+                                <option value="undergraduate" {{ old('level') == 'undergraduate' ? 'selected' : '' }}>Undergraduate</option>
+                                <option value="masters" {{ old('level') == 'masters' ? 'selected' : '' }}>Masters</option>
+                                <option value="doctoral" {{ old('level') == 'doctoral' ? 'selected' : '' }}>Doctoral</option>
+                            </select>
+                            <div class="form-text">Select the academic level for this degree program.</div>
+                            @error('level')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label for="duration_id" class="form-label">Duration <span class="text-danger">*</span></label>
                             <select class="form-select @error('duration_id') is-invalid @enderror"
                                     id="duration_id" name="duration_id" required>

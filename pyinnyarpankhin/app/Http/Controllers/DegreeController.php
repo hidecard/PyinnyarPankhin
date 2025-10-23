@@ -25,6 +25,7 @@ class DegreeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'degree_name' => 'required|string|max:255',
+            'level' => 'required|in:undergraduate,masters,doctoral',
             'duration_id' => 'required|exists:duration,id',
         ]);
 
@@ -34,7 +35,7 @@ class DegreeController extends Controller
                 ->withInput();
         }
 
-        Degree::create($request->only(['degree_name', 'duration_id']));
+        Degree::create($request->only(['degree_name', 'level', 'duration_id']));
 
         return redirect()->route('admin.degrees.index')
             ->with('success', 'Degree created successfully.');
@@ -56,6 +57,7 @@ class DegreeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'degree_name' => 'required|string|max:255',
+            'level' => 'required|in:undergraduate,masters,doctoral',
             'duration_id' => 'required|exists:duration,id',
         ]);
 
@@ -65,7 +67,7 @@ class DegreeController extends Controller
                 ->withInput();
         }
 
-        $degree->update($request->only(['degree_name', 'duration_id']));
+        $degree->update($request->only(['degree_name', 'level', 'duration_id']));
 
         return redirect()->route('admin.degrees.index')
             ->with('success', 'Degree updated successfully.');

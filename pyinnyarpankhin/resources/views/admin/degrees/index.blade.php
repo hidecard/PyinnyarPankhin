@@ -26,6 +26,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Degree Name</th>
+                            <th>Level</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -35,6 +36,7 @@
                             <tr>
                                 <td>{{ $degree->id }}</td>
                                 <td>{{ $degree->degree_name }}</td>
+                                <td>{{ ucfirst($degree->level) }}</td>
                                 <td>{{ $degree->created_at->format('M d, Y') }}</td>
                                 <td>
                                     <a href="{{ route('admin.degrees.show', $degree) }}" class="btn btn-sm btn-info">
