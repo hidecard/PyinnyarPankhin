@@ -115,4 +115,13 @@ class AdmissionController extends Controller
         return redirect()->route('admin.admissions.index')
             ->with('success', 'Admission application deleted successfully.');
     }
+
+    /**
+     * Display a listing of admissions for public view.
+     */
+    public function publicIndex()
+    {
+        $admissions = Admission::with('department')->get();
+        return view('admissions', compact('admissions'));
+    }
 }

@@ -17,9 +17,7 @@ use App\Http\Controllers\AdmissionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/academics', [AcademicsController::class, 'index'])->name('academics');
-Route::get('/admissions', function () {
-    return view('admissions');
-})->name('admissions');
+Route::get('/admissions', [AdmissionController::class, 'publicIndex'])->name('admissions');
 Route::get('/department', function () {
     return view('department');
 })->name('department');

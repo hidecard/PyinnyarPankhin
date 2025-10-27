@@ -329,6 +329,44 @@
             </section>
         <!-- Tuition & Financial Aid End-->
 
+        <!-- Admission Applications List Start -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold" style="color: #6C3428;">Admission Applications</h2>
+                    <p style="color: #6C3428;">Current admission applications</p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table" >
+                            <tr>
+                                <th style="background-color: #6C3428; color: white;">Name</th>
+                                <th style="background-color: #6C3428; color: white;">Email</th>
+                                <th style="background-color: #6C3428; color: white;">Phone</th>
+                                <th style="background-color: #6C3428; color: white;">Department</th>
+                                <th style="background-color: #6C3428; color: white;">Minimum GPA</th>
+                                <th style="background-color: #6C3428; color: white;">Degree</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($admissions as $admission)
+                            <tr>
+                                <td style="color: #6C3428;">{{ $admission->admissions_name }}</td>
+                                <td style="color: #6C3428;">{{ $admission->email }}</td>
+                                <td style="color: #6C3428;">{{ $admission->phone }}</td>
+                                <td style="color: #6C3428;">{{ $admission->department->department_name ?? 'N/A' }}</td>
+                                <td style="color: #6C3428;">{{ $admission->minimum_gpa }}</td>
+                                <td style="color: #6C3428;">{{ $admission->edu_degree }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!-- Admission Applications List End -->
+
         <!-- Meet Our Admissions Counselors section start -->
             <div class="section counselors-section py-5">
                     <h2 class="text-center fw-bold" style="color: #FF7300; font-family: Arial, Helvetica, sans-serif;">Meet Our Admissions Counselors</h2>
