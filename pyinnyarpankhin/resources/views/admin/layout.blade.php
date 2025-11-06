@@ -26,11 +26,32 @@
                 </a>
             </li>
 
-            <li>
-                <a href="{{ route('admin.academic') }}">
+            <li class="has-submenu">
+                <a href="#" class="submenu-toggle">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Academics</span>
+                    <i class="fas fa-chevron-down submenu-arrow"></i>
                 </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ route('admin.academic') }}">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.intakes.index') }}">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Intakes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.intakes.intakes.details.index', 1) }}">
+                            <i class="fas fa-list"></i>
+                            <span>Intake Details</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li>
@@ -46,6 +67,8 @@
                     <span>Admissions</span>
                 </a>
             </li>
+
+
 
             <li>
                 <a href="{{ route('admin.calendar') }}">
@@ -94,11 +117,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script>
         // Initialize sidebar submenu toggle
-        document.querySelectorAll('.has-submenu > a').forEach(item => {
+        document.querySelectorAll('.submenu-toggle').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
-                const submenu = this.parentElement.querySelector('.sidebar-submenu');
-                this.parentElement.classList.toggle('active');
+                const parentLi = this.parentElement;
+                parentLi.classList.toggle('active');
             });
         });
     </script>

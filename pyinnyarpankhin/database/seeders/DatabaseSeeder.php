@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
 
         // Attach majors to degrees
         $bsc->majors()->sync([1, 2]); // Computer Science, Physics
-        $ba->majors()->sync([6]); // English Literature
+        $ba->majors()->sync([6]); // English Literatured
         $beng->majors()->sync([3, 4]); // Mechanical, Electrical Engineering
         $mba->majors()->sync([5]); // Business Administration
         $msc->majors()->sync([1, 2]); // Computer Science, Physics
@@ -164,5 +164,11 @@ class DatabaseSeeder extends Seeder
 
         // Seed admissions
         $this->call(AdmissionSeeder::class);
+
+        // Seed intake, intake_detail, and tuition
+        $this->call(IntakeSeeder::class);
+
+        // Seed settings
+        $this->call(SettingSeeder::class);
     }
 }

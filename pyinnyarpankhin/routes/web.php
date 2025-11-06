@@ -14,6 +14,9 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\IntakeController;
+use App\Http\Controllers\IntakeDetailController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/academics', [AcademicsController::class, 'index'])->name('academics');
@@ -36,7 +39,12 @@ Route::get('/contact', function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+    // Settings Routes
+    Route::get('/admin/settings', [SettingsController::class, 'index'])->name('admin.settings');
+    Route::put('/admin/settings/{group}', [SettingsController::class, 'update'])->name('admin.settings.update');
+    Route::post('/admin/settings/reset/{group?}', [SettingsController::class, 'reset'])->name('admin.settings.reset');
+    Route::get('/api/settings/{key}', [SettingsController::class, 'get'])->name('api.settings.get');
+    Route::post('/api/settings/{key}', [SettingsController::class, 'set'])->name('api.settings.set');
     Route::get('/admin/academic', [AdminController::class, 'academic'])->name('admin.academic');
     Route::get('/admin/calendar', [AdminController::class, 'calendar'])->name('admin.calendar');
 
@@ -57,6 +65,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/events', EventController::class, ['as' => 'admin']);
     Route::patch('admin/events/{event}/toggle', [EventController::class, 'toggle'])->name('admin.events.toggle');
     Route::resource('admin/admissions', AdmissionController::class, ['as' => 'admin']);
+    Route::resource('admin/intakes', IntakeController::class, ['as' => 'admin']);
+    Route::resource('admin/intakes.details', IntakeDetailController::class, ['as' => 'admin.intakes']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

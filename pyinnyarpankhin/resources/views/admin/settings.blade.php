@@ -7,727 +7,381 @@
     <div class="row">
         <div class="col-12">
             <div class="settings-container">
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 style="color: #6C3428;"><i class="fas fa-cogs me-2"></i>System Settings</h2>
+                    <div>
+                        <button type="button" class="btn btn-warning me-2" onclick="resetSettings()">
+                            <i class="fas fa-undo me-1"></i>Reset to Default
+                        </button>
+                        <button type="button" class="btn btn-success" onclick="saveAllSettings()">
+                            <i class="fas fa-save me-1"></i>Save All Changes
+                        </button>
+                    </div>
+                </div>
+
                 <div class="settings-tabs">
-                    <button class="tab-btn active mb-3" data-tab="university-info" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
-                        <i class="fas fa-university me-2"></i>University Info
+                    <button class="tab-btn active mb-3" data-tab="general" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                        <i class="fas fa-university me-2"></i>General
                     </button>
-                    <button class="tab-btn" data-tab="user-management" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
-                        <i class="fas fa-users me-2"></i>User Management
-                    </button>
-                    <button class="tab-btn" data-tab="academic-settings"  style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                    <button class="tab-btn" data-tab="academic" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
                         <i class="fas fa-graduation-cap me-2"></i>Academic
                     </button>
-                    <button class="tab-btn" data-tab="student-settings"  style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                    <button class="tab-btn" data-tab="student" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
                         <i class="fas fa-user-graduate me-2"></i>Students
                     </button>
-                    <button class="tab-btn" data-tab="faculty-settings"  style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                    <button class="tab-btn" data-tab="faculty" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
                         <i class="fas fa-chalkboard-teacher me-2"></i>Faculty
                     </button>
-                    <button class="tab-btn" data-tab="finance-settings"  style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                    <button class="tab-btn" data-tab="finance" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
                         <i class="fas fa-money-bill-wave me-2"></i>Finance
                     </button>
-                    <button class="tab-btn" data-tab="system-settings"  style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                    <button class="tab-btn" data-tab="system" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
                         <i class="fas fa-desktop me-2"></i>System
                     </button>
-                    <button class="tab-btn" data-tab="security-settings"  style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                    <button class="tab-btn" data-tab="security" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
                         <i class="fas fa-shield-alt me-2"></i>Security
                     </button>
                 </div>
 
                 <div class="settings-content">
-                    <!-- University Information Settings -->
-                    <div class="tab-pane active mt-3" id="university-info">
-                        <h3 style="color: #6C3428;"><i class="fas fa-university me-2"></i>University Information</h3>
-                        <form>
+                    <!-- General Settings -->
+                    <div class="tab-pane active mt-3" id="general">
+                        <h3 style="color: #6C3428;"><i class="fas fa-university me-2"></i>General Settings</h3>
+                        <form id="general-form" method="POST" action="{{ route('admin.settings.update', 'general') }}">
+                            @csrf
+                            <input type="hidden" name="group" value="general">
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label" style="color: #6C3428;">University Name</label>
-                                    <input type="text" style="color: #6C3428;" class="form-control" value="Pyinnyar Pankhin University">
+                                    <input type="text" name="settings[university_name][value]" class="form-control" value="{{ $settings['general']->where('key', 'university_name')->first()?->value ?? 'Pyinnyar Pankhin University' }}">
+                                    <input type="hidden" name="settings[university_name][key]" value="university_name">
+                                    <input type="hidden" name="settings[university_name][type]" value="string">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label" style="color: #6C3428;">University Motto</label>
-                                    <input type="text" style="color: #6C3428;" class="form-control" value="Knowledge, Wisdom, Excellence">
+                                    <label class="form-label" style="color: #6C3428;">University Address</label>
+                                    <input type="text" name="settings[university_address][value]" class="form-control" value="{{ $settings['general']->where('key', 'university_address')->first()?->value ?? 'Myanaung, Ayeyarwaddy Myanmar' }}">
+                                    <input type="hidden" name="settings[university_address][key]" value="university_address">
+                                    <input type="hidden" name="settings[university_address][type]" value="string">
                                 </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" style="color: #6C3428;">University Logo</label>
-                                <input type="file" class="form-control" style="color: #6C3428;">
-                                <small style="color: #6C3428;">Recommended size: 300x100 pixels</small>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label class="form-label" style="color: #6C3428;">Phone Number</label>
-                                    <input type="text" style="color: #6C3428;" class="form-control" value="+95 123456789">
+                                    <input type="text" name="settings[university_phone][value]" class="form-control" value="{{ $settings['general']->where('key', 'university_phone')->first()?->value ?? '(09) 456789101' }}">
+                                    <input type="hidden" name="settings[university_phone][key]" value="university_phone">
+                                    <input type="hidden" name="settings[university_phone][type]" value="string">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" style="color: #6C3428;">Email Address</label>
-                                    <input type="email" style="color: #6C3428;" class="form-control" value="info@ppu.edu.mm">
+                                    <input type="email" name="settings[university_email][value]" class="form-control" value="{{ $settings['general']->where('key', 'university_email')->first()?->value ?? 'pininyarpankhin@gmail.com' }}">
+                                    <input type="hidden" name="settings[university_email][key]" value="university_email">
+                                    <input type="hidden" name="settings[university_email][type]" value="string">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" style="color: #6C3428;">Website</label>
-                                    <input type="url" style="color: #6C3428;" class="form-control" value="https://www.ppu.edu.mm">
+                                    <input type="url" name="settings[university_website][value]" class="form-control" value="{{ $settings['general']->where('key', 'university_website')->first()?->value ?? 'https://pyinnyarpankhin.edu.mm' }}">
+                                    <input type="hidden" name="settings[university_website][key]" value="university_website">
+                                    <input type="hidden" name="settings[university_website][type]" value="string">
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" style="color: #6C3428;">Address</label>
-                                <textarea class="form-control" style="color: #6C3428;" rows="2">123 University Avenue, Yangon, Myanmar</textarea>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label class="form-label" style="color: #6C3428;">Academic Year Start</label>
-                                    <input type="date" class="form-control" style="color: #6C3428;" value="2023-06-01">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label" style="color: #6C3428;">Academic Year End</label>
-                                    <input type="date" style="color: #6C3428;" class="form-control" value="2024-03-31">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label" style="color: #6C3428;">Current Semester</label>
-                                    <select class="form-select" style="color: #6C3428;">
-                                        <option>Semester 1</option>
-                                        <option selected>Semester 2</option>
-                                        <option>Summer Semester</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <button type="submit" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">Save Changes</button>
+                            <button type="submit" class="btn btn-primary" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                                <i class="fas fa-save me-1"></i>Save General Settings
+                            </button>
                         </form>
                     </div>
 
-                    <!-- User Management Settings -->
-                    <div class="tab-pane mt-3" id="user-management">
-                        <h3 style="color: #6C3428;"><i class="fas fa-users me-2"></i>User Management</h3>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4 style="color: #6C3428;">Roles & Permissions</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th style="color: #6C3428;">Role</th>
-                                                <th style="color: #6C3428;">Dashboard Access</th>
-                                                <th style="color: #6C3428;">Student Records</th>
-                                                <th style="color: #6C3428;">Academic Settings</th>
-                                                <th style="color: #6C3428;">Financial Access</th>
-                                                <th style="color: #6C3428;">System Settings</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="color: #6C3428;">Administrator</td>
-                                                <td><input type="checkbox" checked disabled></td>
-                                                <td><input type="checkbox" checked disabled></td>
-                                                <td><input type="checkbox" checked disabled></td>
-                                                <td><input type="checkbox" checked disabled></td>
-                                                <td><input type="checkbox" checked disabled></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color: #6C3428;">Faculty</td>
-                                                <td><input type="checkbox" checked></td>
-                                                <td><input type="checkbox" checked></td>
-                                                <td><input type="checkbox"></td>
-                                                <td><input type="checkbox"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color: #6C3428;">Student</td>
-                                                <td><input type="checkbox" checked></td>
-                                                <td><input type="checkbox"></td>
-                                                <td><input type="checkbox"></td>
-                                                <td><input type="checkbox"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Password Policy</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Minimum Password Length</label>
-                                            <input type="number" class="form-control" value="8">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Password Complexity</label>
-                                            <select class="form-select">
-                                                <option>Low (Letters only)</option>
-                                                <option selected>Medium (Letters + Numbers)</option>
-                                                <option>High (Letters, Numbers, Special Characters)</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Password Expiry (days)</label>
-                                            <input type="number" class="form-control" value="90">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Authentication Methods</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="twoFactorAuth" checked>
-                                            <label class="form-check-label" for="twoFactorAuth" style="color: #6C3428;">Two-Factor Authentication</label>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="ssoAuth">
-                                            <label class="form-check-label" for="ssoAuth" style="color: #6C3428;">Single Sign-On (SSO)</label>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="ldapAuth">
-                                            <label class="form-check-label" for="ldapAuth" style="color: #6C3428;">LDAP Integration</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="googleAuth" checked>
-                                            <label class="form-check-label" for="googleAuth" style="color: #6C3428;">Google Authentication</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">Save User Settings</button>
-                    </div>
-
                     <!-- Academic Settings -->
-                    <div class="tab-pane mt-3" id="academic-settings">
+                    <div class="tab-pane mt-3" id="academic">
                         <h3 style="color: #6C3428;"><i class="fas fa-graduation-cap me-2"></i>Academic Settings</h3>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Grading System</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Grading Scale</label>
-                                            <select class="form-select" style="color: #6C3428;">
-                                                <option selected>Letter Grades (A-F)</option>
-                                                <option>Percentage Scale</option>
-                                                <option>GPA Scale (4.0)</option>
-                                                <option>Custom Scale</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="color: #6C3428;">Grade</th>
-                                                        <th style="color: #6C3428;">Minimum %</th>
-                                                        <th style="color: #6C3428;">Points</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td  style="color: #6C3428;">A</td>
-                                                        <td><input type="number" class="form-control" value="90"></td>
-                                                        <td><input type="number" class="form-control" value="4.0"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td  style="color: #6C3428;">B</td>
-                                                        <td><input type="number" class="form-control" value="80"></td>
-                                                        <td><input type="number" class="form-control" value="3.0"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td  style="color: #6C3428;">C</td>
-                                                        <td><input type="number" class="form-control" value="70"></td>
-                                                        <td><input type="number" class="form-control" value="2.0"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td  style="color: #6C3428;">D</td>
-                                                        <td><input type="number" class="form-control" value="60"></td>
-                                                        <td><input type="number" class="form-control" value="1.0"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td  style="color: #6C3428;">F</td>
-                                                        <td><input type="number" class="form-control" value="0"></td>
-                                                        <td><input type="number" class="form-control" value="0.0"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                        <form id="academic-form" method="POST" action="{{ route('admin.settings.update', 'academic') }}">
+                            @csrf
+                            <input type="hidden" name="group" value="academic">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Academic Year Start</label>
+                                    <input type="date" name="settings[academic_year_start][value]" class="form-control" value="{{ $settings['academic']->where('key', 'academic_year_start')->first()?->value ?? '2024-06-01' }}">
+                                    <input type="hidden" name="settings[academic_year_start][key]" value="academic_year_start">
+                                    <input type="hidden" name="settings[academic_year_start][type]" value="string">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Academic Year End</label>
+                                    <input type="date" name="settings[academic_year_end][value]" class="form-control" value="{{ $settings['academic']->where('key', 'academic_year_end')->first()?->value ?? '2025-03-31' }}">
+                                    <input type="hidden" name="settings[academic_year_end][key]" value="academic_year_end">
+                                    <input type="hidden" name="settings[academic_year_end][type]" value="string">
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Credit System</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label"  style="color: #6C3428;">Credit Hours per Course</label>
-                                            <input type="number" class="form-control" value="3">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label"  style="color: #6C3428;">Full-time Student Minimum Credits</label>
-                                            <input type="number" class="form-control" value="12">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Maximum Credits Allowed</label>
-                                            <input type="number" class="form-control" value="18">
-                                        </div>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Current Semester</label>
+                                    <select name="settings[current_semester][value]" class="form-select">
+                                        <option value="1" {{ ($settings['academic']->where('key', 'current_semester')->first()?->value ?? '1') == '1' ? 'selected' : '' }}>Semester 1</option>
+                                        <option value="2" {{ ($settings['academic']->where('key', 'current_semester')->first()?->value ?? '1') == '2' ? 'selected' : '' }}>Semester 2</option>
+                                        <option value="3" {{ ($settings['academic']->where('key', 'current_semester')->first()?->value ?? '1') == '3' ? 'selected' : '' }}>Summer Semester</option>
+                                    </select>
+                                    <input type="hidden" name="settings[current_semester][key]" value="current_semester">
+                                    <input type="hidden" name="settings[current_semester][type]" value="string">
                                 </div>
-
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Academic Calendar</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Semester Duration (weeks)</label>
-                                            <input type="number" class="form-control" value="16">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Examination Period (weeks)</label>
-                                            <input type="number" class="form-control" value="2">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Break Between Semesters (weeks)</label>
-                                            <input type="number" class="form-control" value="4">
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Grading Scale</label>
+                                    <select name="settings[grading_scale][value]" class="form-select">
+                                        <option value="letter" {{ ($settings['academic']->where('key', 'grading_scale')->first()?->value ?? 'letter') == 'letter' ? 'selected' : '' }}>Letter Grades (A-F)</option>
+                                        <option value="percentage" {{ ($settings['academic']->where('key', 'grading_scale')->first()?->value ?? 'letter') == 'percentage' ? 'selected' : '' }}>Percentage Scale</option>
+                                        <option value="gpa" {{ ($settings['academic']->where('key', 'grading_scale')->first()?->value ?? 'letter') == 'gpa' ? 'selected' : '' }}>GPA Scale (4.0)</option>
+                                    </select>
+                                    <input type="hidden" name="settings[grading_scale][key]" value="grading_scale">
+                                    <input type="hidden" name="settings[grading_scale][type]" value="string">
                                 </div>
                             </div>
-                        </div>
 
-                        <button type="submit" style="color:white; background-color: #FF7300;border: none;padding: 8px; border-radius: 10px;">Save Academic Settings</button>
+                            <button type="submit" class="btn btn-primary" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                                <i class="fas fa-save me-1"></i>Save Academic Settings
+                            </button>
+                        </form>
                     </div>
 
                     <!-- Student Settings -->
-                    <div class="tab-pane mt-3" id="student-settings">
-                        <h3 style="color: #6C3428;"><i class="fas fa-user-graduate me-2"></i>Student Management Settings</h3>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Admission Settings</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Admission Intake Periods</label>
-                                            <select class="form-select" multiple  style="color: #6C3428;">
-                                                <option selected>January Intake</option>
-                                                <option selected>June Intake</option>
-                                                <option>October Intake</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Application Fee</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" style="color: #6C3428;">$</span>
-                                                <input type="number" class="form-control" value="20">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Minimum Admission Age</label>
-                                            <input type="number" class="form-control" value="16">
-                                        </div>
-                                    </div>
+                    <div class="tab-pane mt-3" id="student">
+                        <h3 style="color: #6C3428;"><i class="fas fa-user-graduate me-2"></i>Student Settings</h3>
+                        <form id="student-form" method="POST" action="{{ route('admin.settings.update', 'student') }}">
+                            @csrf
+                            <input type="hidden" name="group" value="student">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Minimum Admission Age</label>
+                                    <input type="number" name="settings[min_admission_age][value]" class="form-control" value="{{ $settings['student']->where('key', 'min_admission_age')->first()?->value ?? '16' }}">
+                                    <input type="hidden" name="settings[min_admission_age][key]" value="min_admission_age">
+                                    <input type="hidden" name="settings[min_admission_age][type]" value="integer">
                                 </div>
-
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Student ID Generation</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">ID Format</label>
-                                            <input type="text" class="form-control" value="PPU-{year}-{dept}-{seq}">
-                                            <small style="color: #6C3428;">Available placeholders: {year}, {dept}, {seq}, {random}</small>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Starting Sequence Number</label>
-                                            <input type="number" class="form-control" value="1001">
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Minimum GPA for Graduation</label>
+                                    <input type="number" step="0.1" name="settings[min_graduation_gpa][value]" class="form-control" value="{{ $settings['student']->where('key', 'min_graduation_gpa')->first()?->value ?? '2.0' }}">
+                                    <input type="hidden" name="settings[min_graduation_gpa][key]" value="min_graduation_gpa">
+                                    <input type="hidden" name="settings[min_graduation_gpa][type]" value="string">
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Attendance Policy</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Minimum Attendance %</label>
-                                            <input type="number" class="form-control" value="75">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Attendance Tracking Method</label>
-                                            <select class="form-select" style="color: #6C3428;">
-                                                <option selected>Manual Entry by Faculty</option>
-                                                <option>Biometric System</option>
-                                                <option>QR Code Scanning</option>
-                                                <option>Mobile App Check-in</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Required Community Service Hours</label>
+                                    <input type="number" name="settings[community_service_hours][value]" class="form-control" value="{{ $settings['student']->where('key', 'community_service_hours')->first()?->value ?? '40' }}">
+                                    <input type="hidden" name="settings[community_service_hours][key]" value="community_service_hours">
+                                    <input type="hidden" name="settings[community_service_hours][type]" value="integer">
                                 </div>
-
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Graduation Requirements</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Minimum GPA for Graduation</label>
-                                            <input type="number" step="0.1" class="form-control" value="2.0">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Required Community Service Hours</label>
-                                            <input type="number" class="form-control" value="40">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Thesis Requirement</label>
-                                            <select class="form-select" style="color: #6C3428;">
-                                                <option selected>Required for all programs</option>
-                                                <option>Required for graduate programs only</option>
-                                                <option>Optional</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Minimum Attendance Percentage</label>
+                                    <input type="number" name="settings[min_attendance_percentage][value]" class="form-control" value="{{ $settings['student']->where('key', 'min_attendance_percentage')->first()?->value ?? '75' }}">
+                                    <input type="hidden" name="settings[min_attendance_percentage][key]" value="min_attendance_percentage">
+                                    <input type="hidden" name="settings[min_attendance_percentage][type]" value="integer">
                                 </div>
                             </div>
-                        </div>
 
-                        <button type="submit" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">Save Student Settings</button>
+                            <button type="submit" class="btn btn-primary" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                                <i class="fas fa-save me-1"></i>Save Student Settings
+                            </button>
+                        </form>
                     </div>
 
                     <!-- Faculty Settings -->
-                    <div class="tab-pane mt-3" id="faculty-settings">
-                        <h3 style="color: #6C3428;"><i class="fas fa-chalkboard-teacher me-2"></i>Faculty & Staff Settings</h3>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Faculty Positions</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Faculty Ranks</label>
-                                            <textarea class="form-control" rows="4" style="color: #6C3428;">Lecturer
-Assistant Professor
-Associate Professor
-Professor
-Emeritus Professor</textarea>
-                                            <small style="color: #6C3428;">Enter one rank per line</small>
-                                        </div>
-                                    </div>
+                    <div class="tab-pane mt-3" id="faculty">
+                        <h3 style="color: #6C3428;"><i class="fas fa-chalkboard-teacher me-2"></i>Faculty Settings</h3>
+                        <form id="faculty-form" method="POST" action="{{ route('admin.settings.update', 'faculty') }}">
+                            @csrf
+                            <input type="hidden" name="group" value="faculty">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Standard Teaching Load (hours/week)</label>
+                                    <input type="number" name="settings[standard_teaching_load][value]" class="form-control" value="{{ $settings['faculty']->where('key', 'standard_teaching_load')->first()?->value ?? '12' }}">
+                                    <input type="hidden" name="settings[standard_teaching_load][key]" value="standard_teaching_load">
+                                    <input type="hidden" name="settings[standard_teaching_load][type]" value="integer">
                                 </div>
-
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Teaching Load</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Standard Teaching Load (hours/week)</label>
-                                            <input type="number" class="form-control" value="12">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Maximum Teaching Load</label>
-                                            <input type="number" class="form-control" value="18">
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Maximum Teaching Load</label>
+                                    <input type="number" name="settings[max_teaching_load][value]" class="form-control" value="{{ $settings['faculty']->where('key', 'max_teaching_load')->first()?->value ?? '18' }}">
+                                    <input type="hidden" name="settings[max_teaching_load][key]" value="max_teaching_load">
+                                    <input type="hidden" name="settings[max_teaching_load][type]" value="integer">
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-3">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Leave Management</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Annual Leave Days</label>
-                                            <input type="number" class="form-control" value="30">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Sick Leave Days</label>
-                                            <input type="number" class="form-control" value="15">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Maternity/Paternity Leave</label>
-                                            <input type="number" class="form-control" value="90">
-                                        </div>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Annual Leave Days</label>
+                                    <input type="number" name="settings[annual_leave_days][value]" class="form-control" value="{{ $settings['faculty']->where('key', 'annual_leave_days')->first()?->value ?? '30' }}">
+                                    <input type="hidden" name="settings[annual_leave_days][key]" value="annual_leave_days">
+                                    <input type="hidden" name="settings[annual_leave_days][type]" value="integer">
                                 </div>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Evaluation Criteria</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Evaluation Frequency</label>
-                                            <select class="form-select" style="color: #6C3428;">
-                                                <option>Every Semester</option>
-                                                <option selected>Annually</option>
-                                                <option>Every 2 Years</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Evaluation Components</label>
-                                            <select class="form-select" multiple style="color: #6C3428;">
-                                                <option selected>Teaching Quality</option>
-                                                <option selected>Research Output</option>
-                                                <option selected>Student Feedback</option>
-                                                <option selected>Committee Participation</option>
-                                                <option>Community Service</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Sick Leave Days</label>
+                                    <input type="number" name="settings[sick_leave_days][value]" class="form-control" value="{{ $settings['faculty']->where('key', 'sick_leave_days')->first()?->value ?? '15' }}">
+                                    <input type="hidden" name="settings[sick_leave_days][key]" value="sick_leave_days">
+                                    <input type="hidden" name="settings[sick_leave_days][type]" value="integer">
                                 </div>
                             </div>
-                        </div>
 
-                        <button type="submit" style="color: #FFFF; background-color: #FF7300; border: none;padding: 8px;border-radius: 10px;">Save Faculty Settings</button>
+                            <button type="submit" class="btn btn-primary" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                                <i class="fas fa-save me-1"></i>Save Faculty Settings
+                            </button>
+                        </form>
                     </div>
 
                     <!-- Finance Settings -->
-                    <div class="tab-pane mt-3" id="finance-settings">
-                        <h3 style="color: #6C3428;"><i class="fas fa-money-bill-wave me-2"></i>Financial Settings</h3>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Tuition Fees</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Base Tuition per Credit</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" style="color: #6C3428;">$</span>
-                                                <input type="number" class="form-control" value="150">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Science Program Surcharge (%)</label>
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" value="10">
-                                                <span class="input-group-text" style="color: #6C3428;">%</span>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Graduate Program Surcharge (%)</label>
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" value="20">
-                                                <span class="input-group-text" style="color: #6C3428;">%</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="tab-pane mt-3" id="finance">
+                        <h3 style="color: #6C3428;"><i class="fas fa-money-bill-wave me-2"></i>Finance Settings</h3>
+                        <form id="finance-form" method="POST" action="{{ route('admin.settings.update', 'finance') }}">
+                            @csrf
+                            <input type="hidden" name="group" value="finance">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Base Tuition per Credit ($)</label>
+                                    <input type="number" step="0.01" name="settings[base_tuition_per_credit][value]" class="form-control" value="{{ $settings['finance']->where('key', 'base_tuition_per_credit')->first()?->value ?? '150.00' }}">
+                                    <input type="hidden" name="settings[base_tuition_per_credit][key]" value="base_tuition_per_credit">
+                                    <input type="hidden" name="settings[base_tuition_per_credit][type]" value="string">
                                 </div>
-
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Payment Options</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="installmentPayments" checked>
-                                            <label class="form-check-label" for="installmentPayments" style="color: #6C3428;">Allow Installment Payments</label>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Maximum Installments</label>
-                                            <input type="number" class="form-control" value="3">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Late Payment Fee (%)</label>
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" value="5">
-                                                <span class="input-group-text" style="color: #6C3428;">%</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Merit Scholarship Threshold (GPA)</label>
+                                    <input type="number" step="0.1" name="settings[merit_scholarship_threshold][value]" class="form-control" value="{{ $settings['finance']->where('key', 'merit_scholarship_threshold')->first()?->value ?? '3.5' }}">
+                                    <input type="hidden" name="settings[merit_scholarship_threshold][key]" value="merit_scholarship_threshold">
+                                    <input type="hidden" name="settings[merit_scholarship_threshold][type]" value="string">
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Payment Gateways</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="creditCardPayments" checked>
-                                            <label class="form-check-label" for="creditCardPayments" style="color: #6C3428;">Credit/Debit Cards</label>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="bankTransfer" checked>
-                                            <label class="form-check-label" for="bankTransfer" style="color: #6C3428;">Bank Transfer</label>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="mobilePayments">
-                                            <label class="form-check-label" for="mobilePayments" style="color: #6C3428;">Mobile Payments</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="cashPayments" checked>
-                                            <label class="form-check-label" for="cashPayments" style="color: #6C3428;">Cash Payments</label>
-                                        </div>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Merit Scholarship Discount (%)</label>
+                                    <input type="number" name="settings[merit_scholarship_discount][value]" class="form-control" value="{{ $settings['finance']->where('key', 'merit_scholarship_discount')->first()?->value ?? '25' }}">
+                                    <input type="hidden" name="settings[merit_scholarship_discount][key]" value="merit_scholarship_discount">
+                                    <input type="hidden" name="settings[merit_scholarship_discount][type]" value="integer">
                                 </div>
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Scholarships & Discounts</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Merit Scholarship Threshold (GPA)</label>
-                                            <input type="number" step="0.1" class="form-control" value="3.5">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Merit Scholarship Discount (%)</label>
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" value="25">
-                                                <span class="input-group-text" style="color: #6C3428;">%</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Late Payment Fee (%)</label>
+                                    <input type="number" name="settings[late_payment_fee][value]" class="form-control" value="{{ $settings['finance']->where('key', 'late_payment_fee')->first()?->value ?? '5' }}">
+                                    <input type="hidden" name="settings[late_payment_fee][key]" value="late_payment_fee">
+                                    <input type="hidden" name="settings[late_payment_fee][type]" value="integer">
                                 </div>
                             </div>
-                        </div>
 
-                        <button type="submit" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">Save Finance Settings</button>
+                            <button type="submit" class="btn btn-primary" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                                <i class="fas fa-save me-1"></i>Save Finance Settings
+                            </button>
+                        </form>
                     </div>
 
                     <!-- System Settings -->
-                    <div class="tab-pane mt-3" id="system-settings">
+                    <div class="tab-pane mt-3" id="system">
                         <h3 style="color: #6C3428;"><i class="fas fa-desktop me-2"></i>System Settings</h3>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">General Settings</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">System Language</label>
-                                            <select class="form-select" style="color: #6C3428;">
-                                                <option selected>English</option>
-                                                <option>Myanmar</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Timezone</label>
-                                            <select class="form-select" style="color: #6C3428;">
-                                                <option selected>Asia/Yangon</option>
-                                                <option>UTC</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Date Format</label>
-                                            <select class="form-select" style="color: #6C3428;">
-                                                <option selected>DD/MM/YYYY</option>
-                                                <option>MM/DD/YYYY</option>
-                                                <option>YYYY-MM-DD</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                        <form id="system-form" method="POST" action="{{ route('admin.settings.update', 'system') }}">
+                            @csrf
+                            <input type="hidden" name="group" value="system">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Session Timeout (minutes)</label>
+                                    <input type="number" name="settings[session_timeout][value]" class="form-control" value="{{ $settings['system']->where('key', 'session_timeout')->first()?->value ?? '60' }}">
+                                    <input type="hidden" name="settings[session_timeout][key]" value="session_timeout">
+                                    <input type="hidden" name="settings[session_timeout][type]" value="integer">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Backup Frequency</label>
+                                    <select name="settings[backup_frequency][value]" class="form-select">
+                                        <option value="daily" {{ ($settings['system']->where('key', 'backup_frequency')->first()?->value ?? 'daily') == 'daily' ? 'selected' : '' }}>Daily</option>
+                                        <option value="weekly" {{ ($settings['system']->where('key', 'backup_frequency')->first()?->value ?? 'daily') == 'weekly' ? 'selected' : '' }}>Weekly</option>
+                                        <option value="monthly" {{ ($settings['system']->where('key', 'backup_frequency')->first()?->value ?? 'daily') == 'monthly' ? 'selected' : '' }}>Monthly</option>
+                                    </select>
+                                    <input type="hidden" name="settings[backup_frequency][key]" value="backup_frequency">
+                                    <input type="hidden" name="settings[backup_frequency][type]" value="string">
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Maintenance Mode</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="maintenanceMode">
-                                            <label class="form-check-label" for="maintenanceMode" style="color: #6C3428;">Enable Maintenance Mode</label>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Maintenance Message</label>
-                                            <textarea class="form-control" rows="3" style="color: #6C3428;" placeholder="System is under maintenance. Please check back later."></textarea>
-                                        </div>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Maintenance Mode</label>
+                                    <select name="settings[maintenance_mode][value]" class="form-select">
+                                        <option value="0" {{ ($settings['system']->where('key', 'maintenance_mode')->first()?->value ?? '0') == '0' ? 'selected' : '' }}>Disabled</option>
+                                        <option value="1" {{ ($settings['system']->where('key', 'maintenance_mode')->first()?->value ?? '0') == '1' ? 'selected' : '' }}>Enabled</option>
+                                    </select>
+                                    <input type="hidden" name="settings[maintenance_mode][key]" value="maintenance_mode">
+                                    <input type="hidden" name="settings[maintenance_mode][type]" value="boolean">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">System Language</label>
+                                    <select name="settings[system_language][value]" class="form-select">
+                                        <option value="en" {{ ($settings['system']->where('key', 'system_language')->first()?->value ?? 'en') == 'en' ? 'selected' : '' }}>English</option>
+                                        <option value="my" {{ ($settings['system']->where('key', 'system_language')->first()?->value ?? 'en') == 'my' ? 'selected' : '' }}>Myanmar</option>
+                                    </select>
+                                    <input type="hidden" name="settings[system_language][key]" value="system_language">
+                                    <input type="hidden" name="settings[system_language][type]" value="string">
                                 </div>
                             </div>
-                        </div>
 
-                        <button type="submit" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">Save System Settings</button>
+                            <button type="submit" class="btn btn-primary" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                                <i class="fas fa-save me-1"></i>Save System Settings
+                            </button>
+                        </form>
                     </div>
 
+
+
                     <!-- Security Settings -->
-                    <div class="tab-pane mt-3" id="security-settings">
+                    <div class="tab-pane mt-3" id="security">
                         <h3 style="color: #6C3428;"><i class="fas fa-shield-alt me-2"></i>Security Settings</h3>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Login Security</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Maximum Login Attempts</label>
-                                            <input type="number" class="form-control" value="5">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Lockout Duration (minutes)</label>
-                                            <input type="number" class="form-control" value="30">
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="forcePasswordChange" checked>
-                                            <label class="form-check-label" for="forcePasswordChange" style="color: #6C3428;">Force Password Change on First Login</label>
-                                        </div>
-                                    </div>
+                        <form id="security-form" method="POST" action="{{ route('admin.settings.update', 'security') }}">
+                            @csrf
+                            <input type="hidden" name="group" value="security">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Maximum Login Attempts</label>
+                                    <input type="number" name="settings[max_login_attempts][value]" class="form-control" value="{{ $settings['security']->where('key', 'max_login_attempts')->first()?->value ?? '5' }}">
+                                    <input type="hidden" name="settings[max_login_attempts][key]" value="max_login_attempts">
+                                    <input type="hidden" name="settings[max_login_attempts][type]" value="integer">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Lockout Duration (minutes)</label>
+                                    <input type="number" name="settings[lockout_duration][value]" class="form-control" value="{{ $settings['security']->where('key', 'lockout_duration')->first()?->value ?? '30' }}">
+                                    <input type="hidden" name="settings[lockout_duration][key]" value="lockout_duration">
+                                    <input type="hidden" name="settings[lockout_duration][type]" value="integer">
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 style="color: #6C3428;">Data Encryption</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="encryptData" checked>
-                                            <label class="form-check-label" for="encryptData" style="color: #6C3428;">Encrypt Sensitive Data</label>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" style="color: #6C3428;">Encryption Algorithm</label>
-                                            <select class="form-select" style="color: #6C3428;">
-                                                <option selected>AES-256</option>
-                                                <option>RSA</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Force Password Change on First Login</label>
+                                    <select name="settings[force_password_change][value]" class="form-select">
+                                        <option value="1" {{ ($settings['security']->where('key', 'force_password_change')->first()?->value ?? '1') == '1' ? 'selected' : '' }}>Enabled</option>
+                                        <option value="0" {{ ($settings['security']->where('key', 'force_password_change')->first()?->value ?? '1') == '0' ? 'selected' : '' }}>Disabled</option>
+                                    </select>
+                                    <input type="hidden" name="settings[force_password_change][key]" value="force_password_change">
+                                    <input type="hidden" name="settings[force_password_change][type]" value="boolean">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" style="color: #6C3428;">Encrypt Sensitive Data</label>
+                                    <select name="settings[encrypt_sensitive_data][value]" class="form-select">
+                                        <option value="1" {{ ($settings['security']->where('key', 'encrypt_sensitive_data')->first()?->value ?? '1') == '1' ? 'selected' : '' }}>Enabled</option>
+                                        <option value="0" {{ ($settings['security']->where('key', 'encrypt_sensitive_data')->first()?->value ?? '1') == '0' ? 'selected' : '' }}>Disabled</option>
+                                    </select>
+                                    <input type="hidden" name="settings[encrypt_sensitive_data][key]" value="encrypt_sensitive_data">
+                                    <input type="hidden" name="settings[encrypt_sensitive_data][type]" value="boolean">
                                 </div>
                             </div>
-                        </div>
 
-                        <button type="submit" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">Save Security Settings</button>
+                            <button type="submit" class="btn btn-primary" style="color: white; background-color: #FF7300; border: none; padding: 8px; border-radius: 10px;">
+                                <i class="fas fa-save me-1"></i>Save Security Settings
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
