@@ -54,13 +54,7 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="{{ route('admin.events.index') }}">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Events</span>
-                </a>
-            </li>
-
+          
             <li>
                 <a href="{{ route('admin.admissions.index') }}">
                     <i class="fas fa-user-graduate"></i>
@@ -90,6 +84,13 @@
                     <span>Role Management</span>
                 </a>
             </li>
+              <li>
+                <a href="{{ route('admin.events.index') }}">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Events</span>
+                </a>
+            </li>
+
 
             <li>
                 <a href="{{ route('admin.settings') }}">
