@@ -26,7 +26,7 @@ class IntakeDetailController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'intake_id'  => 'nullable|exists:intakes,id',
+            'intake_id'  => 'nullable|exists:intake,id',
             'event_name' => 'required|string|max:255',
             'start_date' => 'nullable|date',
             'end_date'   => 'nullable|date|after_or_equal:start_date',
@@ -41,6 +41,7 @@ class IntakeDetailController extends Controller
     // Show a single intake detail
     public function show(IntakeDetail $intake_detail)
 {
+    $intake_detail->load('intake');
     return view('admin.intake-details.show', [
         'intakeDetail' => $intake_detail
     ]);
@@ -62,7 +63,7 @@ class IntakeDetailController extends Controller
     public function update(Request $request, IntakeDetail $intake_detail)
     {
         $request->validate([
-            'intake_id'  => 'nullable|exists:intakes,id',
+            'intake_id'  => 'nullable|exists:intake,id',
             'event_name' => 'required|string|max:255',
             'start_date' => 'nullable|date',
             'end_date'   => 'nullable|date|after_or_equal:start_date',
