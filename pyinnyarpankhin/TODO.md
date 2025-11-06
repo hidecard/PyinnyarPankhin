@@ -1,15 +1,12 @@
-# TODO: Restructure Authentication and Add User Management CRUD
+# TODO: Add Intake ID FK to IntakeDetail and Update Admin CRUD UI
 
-## Issues to Fix
-1. Remove regular user login functionality
-2. Keep only admin login
-3. Add user management CRUD to admin dashboard
+## Steps to Complete
 
-## Tasks
-- [x] Remove regular login routes and views
-- [x] Update routes to only allow admin login
-- [x] Create UserManagementController for CRUD operations
-- [x] Add user management routes
-- [x] Update admin dashboard with user management links
-- [x] Create user management views (index, create, edit)
-- [x] Test admin login and user management functionality
+- [ ] Create migration to add intake_id column and foreign key to intake_detail table
+- [ ] Update IntakeDetail model: add belongsTo Intake relationship
+- [ ] Update Intake model: add hasMany IntakeDetail relationship
+- [ ] Update IntakeDetailController: add Intake parameter to methods (nested resource)
+- [ ] Update routes/web.php: change to nested resource Route::resource('admin/intakes.details', IntakeDetailController::class, ['as' => 'admin'])
+- [ ] Update views: add intake dropdown selection in admin/intake-details create/edit forms
+- [ ] Run the new migration
+- [ ] Test the admin intake-details page

@@ -65,8 +65,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/events', EventController::class, ['as' => 'admin']);
     Route::patch('admin/events/{event}/toggle', [EventController::class, 'toggle'])->name('admin.events.toggle');
     Route::resource('admin/admissions', AdmissionController::class, ['as' => 'admin']);
+    Route::resource('admin/intake-details', IntakeDetailController::class, ['as' => 'admin']);
     Route::resource('admin/intakes', IntakeController::class, ['as' => 'admin']);
-    Route::resource('admin/intakes.details', IntakeDetailController::class, ['as' => 'admin.intakes']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

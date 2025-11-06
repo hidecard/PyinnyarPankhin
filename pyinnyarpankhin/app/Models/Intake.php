@@ -15,6 +15,6 @@ class Intake extends Model
 
     public function intakeDetails()
     {
-        return $this->hasMany(IntakeDetail::class);
+        return $this->hasMany(IntakeDetail::class, 'intake_id');
     }
 }

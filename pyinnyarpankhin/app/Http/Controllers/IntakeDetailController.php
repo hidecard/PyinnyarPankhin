@@ -2,66 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Intake;
 use App\Models\IntakeDetail;
+use App\Models\Intake;
 use Illuminate\Http\Request;
 
 class IntakeDetailController extends Controller
 {
-    public function index(Intake $intake)
+    // Display all intake details
+    public function index()
     {
-        $intakeDetails = $intake->intakeDetails;
-        return view('admin.intakes.details.index', compact('intake', 'intakeDetails'));
+        $intakeDetails = IntakeDetail::with('intake')->get();
+        return view('admin.intake-details.index', compact('intakeDetails'));
     }
 
-    public function create(Intake $intake)
+    // Show form to create a new intake detail
+    public function create()
     {
-        return view('admin.intakes.details.create', compact('intake'));
+        $intakes = Intake::all(); // for dropdown
+        return view('admin.intake-details.create', compact('intakes'));
     }
 
-    public function store(Request $request, Intake $intake)
+    // Store a new intake detail
+    public function store(Request $request)
     {
         $request->validate([
+            'intake_id'  => 'nullable|exists:intakes,id',
             'event_name' => 'required|string|max:255',
             'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'end_date'   => 'nullable|date|after_or_equal:start_date',
         ]);
 
-        $intake->intakeDetails()->create($request->all());
+        IntakeDetail::create($request->only(['intake_id', 'event_name', 'start_date', 'end_date']));
 
-        return redirect()->route('admin.intakes.details.index', $intake)
-            ->with('success', 'Intake detail created successfully.');
+        return redirect()->route('admin.intake-details.index')
+                         ->with('success', 'Intake detail created successfully.');
     }
 
-    public function show(Intake $intake, IntakeDetail $detail)
-    {
-        return view('admin.intakes.details.show', compact('intake', 'detail'));
-    }
+    // Show a single intake detail
+    public function show(IntakeDetail $intake_detail)
+{
+    return view('admin.intake-details.show', [
+        'intakeDetail' => $intake_detail
+    ]);
+}
 
-    public function edit(Intake $intake, IntakeDetail $detail)
-    {
-        return view('admin.intakes.details.edit', compact('intake', 'detail'));
-    }
 
-    public function update(Request $request, Intake $intake, IntakeDetail $detail)
+    // Show form to edit an intake detail
+   public function edit(IntakeDetail $intake_detail)
+{
+    $intakes = Intake::all();
+    return view('admin.intake-details.edit', [
+        'intakes' => $intakes,
+        'detail' => $intake_detail // Pass it as $detail for Blade
+    ]);
+}
+
+
+    // Update an existing intake detail
+    public function update(Request $request, IntakeDetail $intake_detail)
     {
         $request->validate([
+            'intake_id'  => 'nullable|exists:intakes,id',
             'event_name' => 'required|string|max:255',
             'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'end_date'   => 'nullable|date|after_or_equal:start_date',
         ]);
 
-        $detail->update($request->all());
+        $intake_detail->update($request->only(['intake_id', 'event_name', 'start_date', 'end_date']));
 
-        return redirect()->route('admin.intakes.details.index', $intake)
-            ->with('success', 'Intake detail updated successfully.');
+        return redirect()->route('admin.intake-details.index')
+                         ->with('success', 'Intake detail updated successfully.');
     }
 
-    public function destroy(Intake $intake, IntakeDetail $detail)
+    // Delete an intake detail
+    public function destroy(IntakeDetail $intake_detail)
     {
-        $detail->delete();
+        $intake_detail->delete();
 
-        return redirect()->route('admin.intakes.details.index', $intake)
-            ->with('success', 'Intake detail deleted successfully.');
+        return redirect()->route('admin.intake-details.index')
+                         ->with('success', 'Intake detail deleted successfully.');
     }
 }

@@ -12,8 +12,8 @@ class IntakeDetail extends Model
     protected $table = 'intake_detail';
 
     protected $fillable = [
-        'event_name',
         'intake_id',
+        'event_name',
         'start_date',
         'end_date',
     ];

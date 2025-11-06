@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.intakes.intakes.details.index', 1) }}">
+                        <a href="{{ route('admin.intake-details.index') }}">
                             <i class="fas fa-list"></i>
                             <span>Intake Details</span>
                         </a>
