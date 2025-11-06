@@ -31,16 +31,24 @@ class EventController extends Controller
             'is_active' => 'boolean'
         ]);
 
-        $data = $request->all();
+        try {
+            $data = $request->all();
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('events', 'public');
-            $data['image'] = $imagePath;
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('events', 'public');
+                $data['image'] = $imagePath;
+            }
+
+            Event::create($data);
+
+            return redirect()->route('admin.events.index')->with('success', 'Event created successfully.');
+        } catch (\Exception $e) {
+            // Delete uploaded image if creation failed
+            if (isset($imagePath) && Storage::disk('public')->exists($imagePath)) {
+                Storage::disk('public')->delete($imagePath);
+            }
+            return redirect()->back()->withInput()->with('error', 'Failed to create event: ' . $e->getMessage());
         }
-
-        Event::create($data);
-
-        return redirect()->route('admin.events.index')->with('success', 'Event created successfully.');
     }
 
     public function show(Event $event)
@@ -65,32 +73,44 @@ class EventController extends Controller
             'is_active' => 'boolean'
         ]);
 
-        $data = $request->all();
+        try {
+            $data = $request->all();
 
-        if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($event->image && Storage::disk('public')->exists($event->image)) {
-                Storage::disk('public')->delete($event->image);
+            if ($request->hasFile('image')) {
+                // Delete old image if exists
+                if ($event->image && Storage::disk('public')->exists($event->image)) {
+                    Storage::disk('public')->delete($event->image);
+                }
+                $imagePath = $request->file('image')->store('events', 'public');
+                $data['image'] = $imagePath;
             }
-            $imagePath = $request->file('image')->store('events', 'public');
-            $data['image'] = $imagePath;
+
+            $event->update($data);
+
+            return redirect()->route('admin.events.index')->with('success', 'Event updated successfully.');
+        } catch (\Exception $e) {
+            // Delete uploaded image if update failed
+            if (isset($imagePath) && Storage::disk('public')->exists($imagePath)) {
+                Storage::disk('public')->delete($imagePath);
+            }
+            return redirect()->back()->withInput()->with('error', 'Failed to update event: ' . $e->getMessage());
         }
-
-        $event->update($data);
-
-        return redirect()->route('admin.events.index')->with('success', 'Event updated successfully.');
     }
 
     public function destroy(Event $event)
     {
-        // Delete image if exists
-        if ($event->image && Storage::disk('public')->exists($event->image)) {
-            Storage::disk('public')->delete($event->image);
+        try {
+            // Delete image if exists
+            if ($event->image && Storage::disk('public')->exists($event->image)) {
+                Storage::disk('public')->delete($event->image);
+            }
+
+            $event->delete();
+
+            return redirect()->route('admin.events.index')->with('success', 'Event deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to delete event: ' . $e->getMessage());
         }
-
-        $event->delete();
-
-        return redirect()->route('admin.events.index')->with('success', 'Event deleted successfully.');
     }
 
     public function toggle(Event $event)
