@@ -218,32 +218,24 @@
                         </tr>
                     </thead>
                        <tbody>
-                            @php
-                        @endphp
-                        @foreach($intake as $intake)
                         <tr>
-                            <td style="color: #6C3428;">{{ $event }}</td>
-                            @foreach($intakes as $intake)
-                                @php
-                                    $detail = $intake->intakeDetails->where('event_name', $event)->first();
-                                @endphp
-                                <td style="color: #6C3428;">
-                                    @if($detail)
-                                        {{ \Carbon\Carbon::parse($detail->start_date)->format('M j, Y') }}
-                                    @else
-                                        {{-- N/A --}}
-                                    @endif
-                                </td>
-                            @endforeach
-                        </tr>
-                        @endforeach
-
-                        {{-- <tr>
                             <td style="color: #6C3428;">Applications Open</td>
                             <td style="color: #6C3428;">October 1</td>
                             <td style="color: #6C3428;">April 1</td>
                             <td style="color: #6C3428;">November 1</td>
-                        </tr> --}}
+                        </tr>
+                        <tr>
+                            <td style="color: #6C3428;">Deadline</td>
+                            <td style="color: #6C3428;">December 15</td>
+                            <td style="color: #6C3428;">June 15</td>
+                            <td style="color: #6C3428;">January 15</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #6C3428;">Orientation</td>
+                            <td style="color: #6C3428;">August 20</td>
+                            <td style="color: #6C3428;">January 10</td>
+                            <td style="color: #6C3428;">May 15</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
