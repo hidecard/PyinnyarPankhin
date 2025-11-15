@@ -96,6 +96,9 @@
                             <ul class="list-unstyled">
                                 @foreach($subject->subSubjects as $subSubject)
                                 <li>• {{ $subSubject->name }}
+                                    @if($subSubject->remark)
+                                        ({{ $subSubject->remark }})
+                                    @endif
                                     @if($subSubject->status == 'active')
                                         <i class="fas fa-star" style="color: red;"></i>
                                     @endif
