@@ -95,7 +95,11 @@
                             @if($subject->subSubjects->count() > 0)
                             <ul class="list-unstyled">
                                 @foreach($subject->subSubjects as $subSubject)
-                                <li>• {{ $subSubject->name }}</li>
+                                <li>• {{ $subSubject->name }}
+                                    @if($subSubject->status == 'active')
+                                        <i class="fas fa-star" style="color: red;"></i>
+                                    @endif
+                                </li>
                                 @endforeach
                             </ul>
                             @else

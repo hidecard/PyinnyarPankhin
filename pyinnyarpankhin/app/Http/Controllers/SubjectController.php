@@ -41,7 +41,7 @@ class SubjectController extends Controller
 
         Subject::create($request->all());
 
-        return redirect()->route('subjects.index')->with('success', 'Subject created successfully.');
+        return redirect()->route('admin.subjects.index')->with('success', 'Subject created successfully.');
     }
 
     /**
@@ -79,7 +79,7 @@ class SubjectController extends Controller
         $subject = Subject::findOrFail($id);
         $subject->update($request->all());
 
-        return redirect()->route('subjects.index')->with('success', 'Subject updated successfully.');
+        return redirect()->route('admin.subjects.index')->with('success', 'Subject updated successfully.');
     }
 
     /**
@@ -90,6 +90,6 @@ class SubjectController extends Controller
         $subject = Subject::findOrFail($id);
         $subject->delete();
 
-        return redirect()->route('subjects.index')->with('success', 'Subject deleted successfully.');
+        return redirect()->route('admin.subjects.index')->with('success', 'Subject deleted successfully.');
     }
 }
