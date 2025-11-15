@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Admission;
 use App\Models\Department;
 use App\Models\Degree;
+use App\Models\IntakeDetail;
 use App\Models\Major;
+use App\Models\Intake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -60,14 +62,14 @@ class AdmissionController extends Controller
 
     /**
      * Display the specified resource.
-     */
+     */ 
     public function show(Admission $admission)
     {
         $admission->load('department');
         return view('admin.admissions.show', compact('admission'));
     }
 
-    /**
+    /**dd
      * Show the form for editing the specified resource.
      */
     public function edit(Admission $admission)
@@ -122,6 +124,7 @@ class AdmissionController extends Controller
     public function publicIndex()
     {
         $admissions = Admission::with('department')->get();
-        return view('admissions', compact('admissions'));
+        $intakes = Intake::with('intakeDetails')->get();
+        return view('admissions', compact('admissions', 'intakes'));
     }
 }

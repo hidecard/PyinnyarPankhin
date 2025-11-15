@@ -27,6 +27,9 @@
                         <li class="nav-item menu" style="margin-right: 50px;">
                         <a class="nav-link active" href="{{ route('academics') }}">Academics</a>
                         </li>
+                         <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('certificate') }}">Certificate</a>
+                </li>
                         <li class="nav-item menu" style="margin-right: 50px;">
                         <a class="nav-link active" href="{{ route('department') }}">Department</a>
                         </li>

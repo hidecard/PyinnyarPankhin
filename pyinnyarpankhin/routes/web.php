@@ -17,6 +17,10 @@ use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\IntakeController;
 use App\Http\Controllers\IntakeDetailController;
+use App\Http\Controllers\TuitionController;
+use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\SubSubjectController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/academics', [AcademicsController::class, 'index'])->name('academics');
@@ -36,6 +40,7 @@ Route::get('/event', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+Route::get('/certificate', [CertificateController::class, 'publicIndex'])->name('certificate');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
@@ -67,6 +72,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/admissions', AdmissionController::class, ['as' => 'admin']);
     Route::resource('admin/intake-details', IntakeDetailController::class, ['as' => 'admin']);
     Route::resource('admin/intakes', IntakeController::class, ['as' => 'admin']);
+    Route::resource('admin/tuitions', TuitionController::class, ['as' => 'admin']);
+    Route::resource('admin/certificates', CertificateController::class, ['as' => 'admin']);
+    Route::resource('admin/subjects', SubjectController::class, ['as' => 'admin']);
+    Route::resource('admin/sub-subjects', SubSubjectController::class, ['as' => 'admin']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

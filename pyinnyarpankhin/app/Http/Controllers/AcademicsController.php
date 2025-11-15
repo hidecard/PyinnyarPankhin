@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Intake;
+use App\Models\IntakeDetail;
 use Illuminate\Http\Request;
 use App\Models\Degree;
 use App\Models\Major;

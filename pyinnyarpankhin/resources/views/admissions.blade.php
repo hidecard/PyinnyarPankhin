@@ -28,6 +28,9 @@
                 <li class="nav-item menu" style="margin-right: 50px;">
                 <a class="nav-link active" href="{{ route('academics') }}">Academics</a>
                 </li>
+                 <li class="nav-item menu" style="margin-right: 50px;">
+                <a class="nav-link active" href="{{ route('certificate') }}">Certificate</a>
+                </li>
                 <li class="nav-item menu" style="margin-right: 50px;">
                 <a class="nav-link active" href="{{ route('department') }}">Department</a>
                 </li>
@@ -214,43 +217,33 @@
                             <th style="background-color: #6C3428; color: white;">Summer Intake</th>
                         </tr>
                     </thead>
-                    <tbody>
+                       <tbody>
+                            @php
+                        @endphp
+                        @foreach($intake as $intake)
                         <tr>
+                            <td style="color: #6C3428;">{{ $event }}</td>
+                            @foreach($intakes as $intake)
+                                @php
+                                    $detail = $intake->intakeDetails->where('event_name', $event)->first();
+                                @endphp
+                                <td style="color: #6C3428;">
+                                    @if($detail)
+                                        {{ \Carbon\Carbon::parse($detail->start_date)->format('M j, Y') }}
+                                    @else
+                                        {{-- N/A --}}
+                                    @endif
+                                </td>
+                            @endforeach
+                        </tr>
+                        @endforeach
+
+                        {{-- <tr>
                             <td style="color: #6C3428;">Applications Open</td>
                             <td style="color: #6C3428;">October 1</td>
                             <td style="color: #6C3428;">April 1</td>
-                            <td>November 1</td>
-                        </tr>
-                        <tr>
-                            <td style="color: #6C3428;">Priority Deadline</td>
-                            <td style="color: #6C3428;" >January 15</td>
-                            <td style="color: #6C3428;">July 15</td>
-                            <td>February 15</td>
-                        </tr>
-                        <tr>
-                            <td style="color: #6C3428;">Final Deadline</td>
-                            <td style="color: #6C3428;">March 1</td>
-                            <td style="color: #6C3428;">September 1</td>
-                            <td style="color: #6C3428;">April 1</td>
-                        </tr>
-                        <tr>
-                            <td style="color: #6C3428;">Entrance Exams</td>
-                            <td style="color: #6C3428;">March 15</td>
-                            <td style="color: #6C3428;">September 15</td>
-                            <td style="color: #6C3428;">April 15</td>
-                        </tr>
-                        <tr>
-                            <td style="color: #6C3428;">Decision Notification</td>
-                            <td style="color: #6C3428;">April 15</td>
-                            <td style="color: #6C3428;">October 15</td>
-                            <td style="color: #6C3428;">May 15</td>
-                        </tr>
-                        <tr>
-                            <td style="color: #6C3428;">Orientation</td>
-                            <td style="color: #6C3428;">August 20</td>
-                            <td style="color: #6C3428;">January 10</td>
-                            <td style="color: #6C3428;">May 20</td>
-                        </tr>
+                            <td style="color: #6C3428;">November 1</td>
+                        </tr> --}}
                     </tbody>
                 </table>
             </div>

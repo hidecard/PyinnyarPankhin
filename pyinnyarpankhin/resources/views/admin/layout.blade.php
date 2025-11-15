@@ -51,6 +51,24 @@
                             <span>Intake Details</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.tuitions.index') }}">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Tuition Fees</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.subjects.index') }}">
+                            <i class="fas fa-book"></i>
+                            <span>Subjects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.sub-subjects.index') }}">
+                            <i class="fas fa-book-open"></i>
+                            <span>Sub-Subjects</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -84,13 +102,12 @@
                     <span>Role Management</span>
                 </a>
             </li>
-              <li>
+            <li>
                 <a href="{{ route('admin.events.index') }}">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Events</span>
                 </a>
             </li>
-
 
             <li>
                 <a href="{{ route('admin.settings') }}">
