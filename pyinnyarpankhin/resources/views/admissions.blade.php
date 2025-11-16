@@ -207,6 +207,18 @@
                 <p style="color: #6C3428;">Mark your calendar</p>
             </div>
 
+            @php
+                $intakeData = [];
+                $allEvents = [];
+                foreach($intakes as $intake) {
+                    $intakeData[$intake->name] = $intake->intakeDetails->keyBy('event_name');
+                    foreach($intake->intakeDetails as $detail) {
+                        $allEvents[$detail->event_name] = true;
+                    }
+                }
+                $allEvents = array_keys($allEvents);
+            @endphp
+
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead class="table" >
@@ -218,24 +230,14 @@
                         </tr>
                     </thead>
                        <tbody>
+                        @foreach($allEvents as $event)
                         <tr>
-                            <td style="color: #6C3428;">Applications Open</td>
-                            <td style="color: #6C3428;">October 1</td>
-                            <td style="color: #6C3428;">April 1</td>
-                            <td style="color: #6C3428;">November 1</td>
+                            <td style="color: #6C3428;">{{ $event }}</td>
+                            <td style="color: #6C3428;">{{ isset($intakeData['Fall Intake'][$event]) ? \Carbon\Carbon::parse($intakeData['Fall Intake'][$event]->start_date)->format('F j, Y') : 'N/A' }}</td>
+                            <td style="color: #6C3428;">{{ isset($intakeData['Spring Intake'][$event]) ? \Carbon\Carbon::parse($intakeData['Spring Intake'][$event]->start_date)->format('F j, Y') : 'N/A' }}</td>
+                            <td style="color: #6C3428;">{{ isset($intakeData['Summer Intake'][$event]) ? \Carbon\Carbon::parse($intakeData['Summer Intake'][$event]->start_date)->format('F j, Y') : 'N/A' }}</td>
                         </tr>
-                        <tr>
-                            <td style="color: #6C3428;">Deadline</td>
-                            <td style="color: #6C3428;">December 15</td>
-                            <td style="color: #6C3428;">June 15</td>
-                            <td style="color: #6C3428;">January 15</td>
-                        </tr>
-                        <tr>
-                            <td style="color: #6C3428;">Orientation</td>
-                            <td style="color: #6C3428;">August 20</td>
-                            <td style="color: #6C3428;">January 10</td>
-                            <td style="color: #6C3428;">May 15</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

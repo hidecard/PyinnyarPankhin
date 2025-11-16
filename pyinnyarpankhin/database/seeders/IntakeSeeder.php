@@ -13,6 +13,10 @@ class IntakeSeeder extends Seeder
      */
     public function run(): void
     {
+        // Truncate tables to avoid duplicates
+        DB::table('intake_detail')->truncate();
+        DB::table('intake')->truncate();
+
         // Seed Intake table
         DB::table('intake')->insert([
             ['name' => 'Fall Intake', 'created_at' => now(), 'updated_at' => now()],
@@ -40,7 +44,7 @@ class IntakeSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'event_name' => 'Final Deadline',
+                'event_name' => 'Deadline',
                 'intake_id' => 1,
                 'start_date' => '2025-08-15',
                 'end_date' => '2025-08-15',
@@ -89,7 +93,7 @@ class IntakeSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'event_name' => 'Final Deadline',
+                'event_name' => 'Deadline',
                 'intake_id' => 2,
                 'start_date' => '2025-12-15',
                 'end_date' => '2025-12-15',
@@ -138,7 +142,7 @@ class IntakeSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'event_name' => 'Final Deadline',
+                'event_name' => 'Deadline',
                 'intake_id' => 3,
                 'start_date' => '2026-04-01',
                 'end_date' => '2026-04-01',

@@ -68,6 +68,9 @@ class IntakeController extends Controller
 
     public function destroy(Intake $intake)
     {
+        // Delete related intake details first to avoid foreign key constraint
+        $intake->intakeDetails()->delete();
+
         $intake->delete();
 
         return redirect()->route('admin.intakes.index')
