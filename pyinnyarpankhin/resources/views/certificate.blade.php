@@ -62,12 +62,12 @@
     <!-- Certificate Curriculum Section -->
     <section id="certificate" class="py-5" style="background-color: #F2D2B8;">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5" style="color: #6c3428;">Syllabus of Pyinnyar Pankhin University for kids</h2>
+            <h2 class="text-center w-100 fw-bold mb-5" style="color: #6c3428;">Syllabus of Pyinnyar Pankhin University for kids</h2>
 
             <!-- Course Description Card -->
             <div class="card mb-4 shadow-sm">
-                <div class="card-header" style="background-color: #FF7300; color: white;">
-                    <h5 class="mb-0">Course Description</h5>
+                <div class="card-header" style="background-color: #6c3428; color: white;">
+                    <h5 class="mb-0 text-light">Course Description</h5>
                 </div>
                 <div class="card-body">
                     <p class="card-text">Pyinnyar Pankhin University for Kids (PPUK) is established in late 2022 in Myanaung, Ayeyarwady Region, Burma. Actually this university is not freshly instituted, there has already had a center with about three hundred students, called "Pyinnyar Pankhin English Training Center (PPETC), founded in 2015, with purposes of sharing Language and academic skills with children and the center becomes the university. The university is still a part of the Center.<br><br>
@@ -93,12 +93,9 @@ And then, students synthesize personal observations, team-work and personal expe
 
             <!-- Subjects and Sub-Subjects Table -->
             <div class="card shadow-sm">
-                <div class="card-header" style="background-color: #FF7300; color: white;">
-                    <h5 class="mb-0">Subjects and Sub-Subjects</h5>
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover certificate-table">
+                        <table class="table table-striped table-hover data-table">
                             <thead class="table-dark">
                                 <tr>
                                     <th>Subject</th>
@@ -153,8 +150,8 @@ And then, students synthesize personal observations, team-work and personal expe
 
             <!-- Art Participation Section -->
             <div class="card mt-4 mb-4 shadow-sm">
-                <div class="card-header" style="background-color: #FF7300; color: white;">
-                    <h5 class="mb-0">Art Participation</h5>
+                <div class="card-header" style="background-color: #6c3428; color: white;">
+                    <h5 class="mb-0 text-light">Art Participation</h5>
                 </div>
                 <div class="card-body">
                     <p class="card-text">Arts and music are a part of life. Participation in the art classes will be useful in academic and real life because both lives deal with huge stress. Arts and music like singing or playing can somehow release stress. What is more the art participation can help to lead armatures as well as professionals.<br><br>

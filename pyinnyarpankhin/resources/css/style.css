@@ -859,3 +859,8 @@ body {
 .certificate-table tbody tr:hover {
     background-color: rgba(255, 115, 0, 0.1);
 }
+
+/* Footer Styles */
+.footer {
+    background-color: var(--primary-color);
+}
