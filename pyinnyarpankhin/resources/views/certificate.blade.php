@@ -99,7 +99,7 @@ And then, students synthesize personal observations, team-work and personal expe
                             <thead class="table-dark">
                                 <tr>
                                     <th>Subject</th>
-                                    <th>Learning Objective / Accompanying assessments</th>
+                                    <th>Learning Objective</th>
                                     <th>Accompanying assessments</th>
                                 </tr>
                             </thead>
@@ -114,7 +114,7 @@ And then, students synthesize personal observations, team-work and personal expe
                                             <li>
                                                 • {{ $subSubject->name }}
                                                 @if($subSubject->status == 'active')
-                                                    <i class="fas fa-star text-warning" title="Active"></i>
+                                                    <i style="font-size: 7px;" class="fas fa-star text-danger" title="Active"></i>
                                                 @endif
                                             </li>
                                             @endforeach
